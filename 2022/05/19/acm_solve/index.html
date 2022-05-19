@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
+    
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <meta name="renderer" content="webkit">
+
+    <!-- Title -->
+    <title>acm_solve | wtf</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/aaa.ico">
+
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    <link rel="preload" href="/css/highlight/monokai-sublime.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/highlight/monokai-sublime.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="wtf"><meta name="msapplication-starturl" content="http://im0use.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="wtf"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="acm_solve | wtf"><meta property="og:site_name" content="wtf"><meta property="og:type" content="article"><meta property="og:url" content="http://im0use.github.io/2022/05/19/acm_solve/"><meta property="og:locale" content="zh-CN"><meta name="description" content="马上省赛，为了应付一下这个考试，得看看往年题，总结一下经验。 - wtfff - wtf"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/xxx.3r9r0or8gok0.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518200737208.evk8cdnb9iw.webp"><meta property="article:published_time" content="2022-05-18T16:38:56.000Z"><meta property="article:modified_time" content="2022-05-18T14:33:25.484Z"><meta property="og:updated_time" content="2022-05-18T14:33:25.484Z"><meta property="article:author" content="wtfff"><meta name="twitter:card" content="summary">
+
+    
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://im0use.github.io/2022/05/19/acm_solve/">
+
+    <meta name="generator" content="Hexo 5.4.2">
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://im0use.github.io/2022/05/19/acm_solve/",
+    "@type": "BlogPosting",
+    "logo": "http://im0use.github.io/img/aaa.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://im0use.github.io/2022/05/19/acm_solve/"
+    },
+    "headline": "acm_solve | wtf",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://im0use.github.io/img/aaa.ico"
+    },
+    
+    "datePublished": "2022-05-18T16:38:56.000Z",
+    "dateModified": "2022-05-18T14:33:25.484Z",
+    "author": {
+        "@type": "Person",
+        "name": "wtfff",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.jpg"
+        },
+        "description": "WTF is white tight feet."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "wtf",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://im0use.github.io/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "马上省赛，为了应付一下这个考试，得看看往年题，总结一下经验。 - wtfff - wtf"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">wtf</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                WTF is white tight feet.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">首页</a>
+    
+    
+        <a href="/archives/" class="navbar-link">归档</a>
+    
+    
+    
+        <a href="/about/" class="navbar-link">About</a>
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=wtf&url=http://im0use.github.io&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=wtf&url=http://im0use.github.io&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io&title=acm_solve" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=acm_solve&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://im0use.github.io&text=acm_solve" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB00lEQVR42u3a0Q6CMBBEUf7/p/VVSXdnlmhShsuLBqEck4W2Q4/XhtsBChQoUAvU0WyrYz73fTXYnGdfB1QMall0xf4VpEI67YHKRZ0LryvQ8+/VTbO6eNUOqGehzkU9KfruT4J6LqoqXNVRO+2BykVVHWWF6gr976MEUNujugH9Lz9/NpsBtTXKmRxUxdwN8v6auoDaGqUmCNNJgTO4q+CgclDuBFKFY+omkANEUFEoFZy6g//JBEIWOqhbotTFugeiU+hVm8vjQUWgVEMdTEGcgSGofNSVYF/dEOWgbvISEtQtUaphZ/J59TxQmSg36HDCVfcFEqhclLvYwQlUO0h7HKgIlApQnbBLTV6diS6oTJTa57x0dM6zAw5Qt0RNXjw6HfiVRaig8lBd0OGGZM5CCRnKgYpBTYJ6FZyp0KP9DioG5Qb1Tmeswoz2BgIVhXIL3F2AM1nUDCoT5XSq6sWRGsx1gz9QOSg3gFUhiLNQRz5oQUWg3IKcLJ7oBo+XAg5Qt0M5Be4sqlHBmgz6QUWhJgsiroBV+A/qWSgrRDW/2x0yqGiUU9QqbLUetqCiUF24MVkQoYK4dgICKgalOk1nAbwLafGgIlA7baBAgQL1sb0BFfGwD/fifLsAAAAASUVORK5CYII=" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">acm_solve</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/img/aaa.jpg" src="/img/suka-lazyload.gif" alt="wtfff's Avatar">
+        <span>2022-05-19</span>
+        
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">分享本文</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=acm_solve&url=http://im0use.github.io/2022/05/19/acm_solve/&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=acm_solve&url=http://im0use.github.io/2022/05/19/acm_solve/&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io/2022/05/19/acm_solve/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://im0use.github.io/2022/05/19/acm_solve/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io/2022/05/19/acm_solve/&title=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=wtf&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io/2022/05/19/acm_solve/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://im0use.github.io/2022/05/19/acm_solve/&text=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB00lEQVR42u3a0Q6CMBBEUf7/p/VVSXdnlmhShsuLBqEck4W2Q4/XhtsBChQoUAvU0WyrYz73fTXYnGdfB1QMall0xf4VpEI67YHKRZ0LryvQ8+/VTbO6eNUOqGehzkU9KfruT4J6LqoqXNVRO+2BykVVHWWF6gr976MEUNujugH9Lz9/NpsBtTXKmRxUxdwN8v6auoDaGqUmCNNJgTO4q+CgclDuBFKFY+omkANEUFEoFZy6g//JBEIWOqhbotTFugeiU+hVm8vjQUWgVEMdTEGcgSGofNSVYF/dEOWgbvISEtQtUaphZ/J59TxQmSg36HDCVfcFEqhclLvYwQlUO0h7HKgIlApQnbBLTV6diS6oTJTa57x0dM6zAw5Qt0RNXjw6HfiVRaig8lBd0OGGZM5CCRnKgYpBTYJ6FZyp0KP9DioG5Qb1Tmeswoz2BgIVhXIL3F2AM1nUDCoT5XSq6sWRGsx1gz9QOSg3gFUhiLNQRz5oQUWg3IKcLJ7oBo+XAg5Qt0M5Be4sqlHBmgz6QUWhJgsiroBV+A/qWSgrRDW/2x0yqGiUU9QqbLUetqCiUF24MVkQoYK4dgICKgalOk1nAbwLafGgIlA7baBAgQL1sb0BFfGwD/fifLsAAAAASUVORK5CYII=" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                        
+                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#B-Build-Roads"><span class="post-toc-number">1.</span> <span class="post-toc-text">B. Build Roads</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C-Cat-Virus"><span class="post-toc-number">2.</span> <span class="post-toc-text">C. Cat Virus</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#D-Dyson-Box"><span class="post-toc-number">3.</span> <span class="post-toc-text">D. Dyson Box</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#F-Birthday-Cake"><span class="post-toc-number">4.</span> <span class="post-toc-text">F. Birthday Cake</span></a></li></ol></div>
+                        
+                    
+                    <article id="post-content">
+                        <p>马上省赛，为了应付一下这个考试，得看看往年题，总结一下经验。</p>
+<span id="more"></span>
+
+<h2 id="B-Build-Roads"><a href="#B-Build-Roads" class="headerlink" title="B. Build Roads"></a>B. Build Roads</h2><p>一个王国，有n个城市。想建n-1条边连接城市，第i个城市有一个建筑公司经验值为ai。想在i和j城市之间建一条路，需要两个城市的建筑公司互相竞争，在修路中两家公司会起冲突，从而造成材料浪费。浪费材料为gcd(ai,aj)</p>
+<p>请设计一条路连接n个城市用n条边，花费最少。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">gen</span><span class="params">()</span> {		<span class="comment">// a[i] = gen()</span></span><br><span class="line">    <span class="keyword">return</span> xorshitf64() % (R - L + <span class="number">1</span>) + L;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>分析：如果R = L，那么ai = L，相邻城市之间花费L，总花费L*(n-1)。如果R ≠  L，n较小时暴力连边建生成树(n^2)；如果n较大，若R - L + 1较大，根据素数分布，素数相距大概几百左右，这样L到(R - L + 1) + L之间必然有一个素数，有一个数为素数，gcd就为1，答案为(n - 1)，若R - L + 1较小，R - L + 1区间之内会被取满，根据连续的两个数必然互质可得结果仍然为(n - 1)。</p>
+<p>暴力建树，单向建边，取其中任意n-1条边一定会把n个城市给连在一起。所以不需要并查，直接排序依据最小权取n-1个即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; e;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) a[i] = <span class="built_in">gen</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">        e.<span class="built_in">push_back</span>(__gcd(a[i], a[j]));</span><br><span class="line"><span class="built_in">sort</span>(e.<span class="built_in">begin</span>(), e.<span class="built_in">end</span>());</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n - <span class="number">1</span>; i++) ans += e[i];</span><br><span class="line"><span class="comment">// output ans</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当n较大时</span></span><br><span class="line">ans = n - <span class="number">1</span>;</span><br><span class="line"><span class="comment">// L = R时</span></span><br><span class="line">ans = (n - <span class="number">1</span>) * L;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> ull = <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line">ull n, L, R, seed, a[<span class="number">200002</span>];</span><br><span class="line"><span class="function">ull <span class="title">xorshift64</span><span class="params">()</span> </span>{</span><br><span class="line">	ull x = seed;</span><br><span class="line">	x ^= x &lt;&lt; <span class="number">13</span>;</span><br><span class="line">	x ^= x &gt;&gt; <span class="number">7</span>;</span><br><span class="line">	x ^= x &lt;&lt; <span class="number">17</span>;</span><br><span class="line">	<span class="keyword">return</span> seed = x;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gen</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">xorshift64</span>() % (R - L + <span class="number">1</span>) + L;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>{</span><br><span class="line">	ull ans = <span class="number">0</span>;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; L &gt;&gt; R &gt;&gt; seed;</span><br><span class="line">	<span class="keyword">if</span> (L == R) ans = (n - <span class="number">1</span>) * L;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n &lt;= <span class="number">20</span>) {</span><br><span class="line">        vector&lt;ull&gt; e;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) a[i] = <span class="built_in">gen</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) </span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">                e.<span class="built_in">push_back</span>(__gcd(a[i], a[j]));</span><br><span class="line">        <span class="built_in">sort</span>(e.<span class="built_in">begin</span>(), e.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) ans += e[i];</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        ans = n - <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="C-Cat-Virus"><a href="#C-Cat-Virus" class="headerlink" title="C. Cat Virus"></a>C. Cat Virus</h2><p>一个国家，有很多族可以被视为有根树。一个族包含黑色和白色，改族新生儿可能是黑色，如果一个新生儿是黑色，那么它的后代也是黑色。</p>
+<p>给一个整数k，可以有k种方式标记黑色和白色组成家族成员。两种方式肯定有不完全相同的成员，至少有一个黑色，而另一个为白色。</p>
+<p>问如何建一个有根树使得方式为k。</p>
+<p>设f(u)为染色u及u所有子树的方案树，若将u染成黑色，则只有一种方案，若将u染成白色，则设u的子节点为v，f(u)=proc(f(v))+1，u方案数为子树方案数之积在加上黑色的一种方案。各子树之间互不影响，所以是乘积。</p>
+<p>若k为奇数，我们给k弄一个左儿子和右儿子，向右儿子方向走，f(r) = (k - 1) / 2，f(l) = 2, f(u) = f(l) * f(r) + 1，若k为偶数，我们直接让u连接一个子节点，然后到下一层，方案数边成k - 1。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> ull = <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"><span class="type">int</span> k;</span><br><span class="line">vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; ans;</span><br><span class="line"><span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> pw)</span> </span>{ <span class="comment">// idx-序号，pw-方案数 </span></span><br><span class="line">	<span class="keyword">if</span> (pw &lt; <span class="number">3</span>) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (pw == <span class="number">3</span>) {</span><br><span class="line">		ans.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(idx, idx + <span class="number">1</span>));</span><br><span class="line">		res++;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span> (pw &amp; <span class="number">1</span>) {</span><br><span class="line">		ans.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(idx, idx + <span class="number">1</span>));</span><br><span class="line">		ans.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(idx, idx + <span class="number">2</span>));</span><br><span class="line">		res += <span class="number">2</span>;</span><br><span class="line">		<span class="built_in">dfs</span>(idx + <span class="number">2</span>, pw &gt;&gt; <span class="number">1</span>);</span><br><span class="line">	} <span class="keyword">else</span> {</span><br><span class="line">		ans.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(idx, idx + <span class="number">1</span>));</span><br><span class="line">		res++;</span><br><span class="line">		<span class="built_in">dfs</span>(idx + <span class="number">1</span>, pw - <span class="number">1</span>);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>{</span><br><span class="line">	cin &gt;&gt; k;</span><br><span class="line">	<span class="keyword">if</span> (k == <span class="number">2</span>) {</span><br><span class="line">		cout &lt;&lt; <span class="string">"1"</span> &lt;&lt; <span class="string">"\n"</span>; <span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">	} <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">3</span>) {</span><br><span class="line">		cout &lt;&lt; <span class="string">"2\n1 2\n"</span>; <span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">dfs</span>(<span class="number">1</span>, k);</span><br><span class="line">	cout &lt;&lt; res + <span class="number">1</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> &amp;i: ans) {</span><br><span class="line">		cout &lt;&lt; i.first &lt;&lt; <span class="string">" "</span> &lt;&lt; i.second &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="D-Dyson-Box"><a href="#D-Dyson-Box" class="headerlink" title="D. Dyson Box"></a>D. Dyson Box</h2><p>一个盒子二维方格，左下角坐标为（0，0），右上角坐标为（2×10 ^ 5，2×10 ^ 5）。</p>
+<p>将有n个事件发生，第i次事件时出现一个立方体，左下角坐标为（xi-1，yi-1），右上角坐标为（xi，yi）。</p>
+<p>盒子里有两个地心引力的方向，水平和竖直，有一半的可能是水平，剩下一半是竖直。她开始测量所有立方体轮廓的总长。如果引力方向是水平，所有立方体水平向左移动，如果是竖直，则竖直向下移动。</p>
+<p>计算每次事件后两种情况（两种情况是指向左移动或向下移动）的轮廓总长。</p>
+<p>对于竖直情况，当已经有一块，添加下一块时要减去2，对于旁边的两列，如果旁边两栋大楼更高，就减2。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/xxx.3r9r0or8gok0.webp" alt="xxx"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518200737208.evk8cdnb9iw.webp" alt="image-20220518200737208"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> debug(x) cout &lt;&lt; <span class="string">"[*]"</span> &lt;&lt; #x &lt;&lt; <span class="string">" = "</span> &lt;&lt; x &lt;&lt; <span class="string">"\n"</span>;</span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">2e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> n, a[maxn], b[maxn];</span><br><span class="line"><span class="type">int</span> ans_x, ans_y;</span><br><span class="line"><span class="type">signed</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> {</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="keyword">while</span> (n--) {</span><br><span class="line">		<span class="type">int</span> x, y;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; x &gt;&gt; y;</span><br><span class="line">		<span class="keyword">if</span> (a[x]) ans_x -= <span class="number">2</span>;</span><br><span class="line">		a[x]++;</span><br><span class="line">		<span class="keyword">if</span> (a[x] &lt;= a[x - <span class="number">1</span>]) ans_x -= <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (a[x] &lt;= a[x + <span class="number">1</span>]) ans_x -= <span class="number">2</span>;</span><br><span class="line">		ans_x += <span class="number">4</span>;</span><br><span class="line">		<span class="keyword">if</span> (b[y]) ans_y -= <span class="number">2</span>;</span><br><span class="line">		b[y]++;</span><br><span class="line">		<span class="keyword">if</span> (b[y] &lt;= b[y - <span class="number">1</span>]) ans_y -= <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (b[y] &lt;= b[y + <span class="number">1</span>]) ans_y -= <span class="number">2</span>;</span><br><span class="line">		ans_y += <span class="number">4</span>;</span><br><span class="line"><span class="comment">//		debug(b[x]);</span></span><br><span class="line"><span class="comment">//		debug(b[x + 1]);</span></span><br><span class="line"><span class="comment">//		debug(b[x - 1]);</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans_x &lt;&lt; <span class="string">" "</span> &lt;&lt; ans_y &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="F-Birthday-Cake"><a href="#F-Birthday-Cake" class="headerlink" title="F. Birthday Cake"></a>F. Birthday Cake</h2><p>请帮助Yamabuki分蛋糕，Yamabuki有n种不同的蛋糕，可以用小写拉丁字母表示，表示蛋糕上面有什么，字符串的拼接表示蛋糕的合并。</p>
+<p>若AB满足CC结构，（A，B两个字符串拼接后可以拆成两个相同的字符串即满足此规律），若AB满足，则BA也满足，所以枚举A的时候找可以满足条件的B即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod[<span class="number">2</span>] = {<span class="number">998244353</span>,<span class="number">1000000007</span>};</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">4e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> sz = <span class="number">233</span>;</span><br><span class="line"><span class="keyword">using</span> ll = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line">string a[maxn];</span><br><span class="line">ll Hase[maxn][<span class="number">2</span>];</span><br><span class="line">ll fac[maxn][<span class="number">2</span>];</span><br><span class="line">map&lt;pair&lt;ll,ll&gt;,<span class="type">int</span>&gt; mp;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    fac[<span class="number">0</span>][<span class="number">0</span>] = fac[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">400000</span>;++i){</span><br><span class="line">        fac[i][<span class="number">0</span>] = fac[i<span class="number">-1</span>][<span class="number">0</span>]*sz%mod[<span class="number">0</span>];</span><br><span class="line">        fac[i][<span class="number">1</span>] = fac[i<span class="number">-1</span>][<span class="number">1</span>]*sz%mod[<span class="number">1</span>];</span><br><span class="line">    }</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;++i){</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,[](<span class="type">const</span> string&amp;a,<span class="type">const</span> string &amp;b)-&gt;<span class="type">bool</span>{</span><br><span class="line">        <span class="keyword">return</span> a.<span class="built_in">size</span>()&lt;b.<span class="built_in">size</span>();</span><br><span class="line">    });</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;++i){</span><br><span class="line">        ll val[<span class="number">2</span>] = {<span class="number">0</span>,<span class="number">0</span>};</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>;j &lt; a[i].<span class="built_in">size</span>();++j){</span><br><span class="line">            val[<span class="number">0</span>] = val[<span class="number">0</span>]*sz+a[i][j];</span><br><span class="line">            val[<span class="number">0</span>] %= mod[<span class="number">0</span>];</span><br><span class="line">            Hase[j+<span class="number">1</span>][<span class="number">0</span>] = val[<span class="number">0</span>];</span><br><span class="line">            val[<span class="number">1</span>] = val[<span class="number">1</span>]*sz+a[i][j];</span><br><span class="line">            val[<span class="number">1</span>] %= mod[<span class="number">1</span>];</span><br><span class="line">            Hase[j+<span class="number">1</span>][<span class="number">1</span>] = val[<span class="number">1</span>];</span><br><span class="line">        }</span><br><span class="line">        ans += mp[<span class="built_in">make_pair</span>(val[<span class="number">0</span>],val[<span class="number">1</span>])];</span><br><span class="line">        <span class="type">int</span> len = a[i].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>;j &lt;= len/<span class="number">2</span>;++j){</span><br><span class="line">            ll hs1 = Hase[j][<span class="number">0</span>];</span><br><span class="line">            ll hs2 = (Hase[len][<span class="number">0</span>]-Hase[len-j][<span class="number">0</span>]*fac[j][<span class="number">0</span>]%mod[<span class="number">0</span>]+mod[<span class="number">0</span>])%mod[<span class="number">0</span>];</span><br><span class="line">            ll hs3 = Hase[j][<span class="number">1</span>];</span><br><span class="line">            ll hs4 = (Hase[len][<span class="number">1</span>]-Hase[len-j][<span class="number">1</span>]*fac[j][<span class="number">1</span>]%mod[<span class="number">1</span>]+mod[<span class="number">1</span>])%mod[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(hs1==hs2&amp;&amp;hs3==hs4){</span><br><span class="line">                ll hs5 = (Hase[len-j][<span class="number">0</span>]-Hase[j][<span class="number">0</span>]*fac[len-j-j][<span class="number">0</span>]%mod[<span class="number">0</span>]+mod[<span class="number">0</span>])%mod[<span class="number">0</span>];</span><br><span class="line">                ll hs6 = (Hase[len-j][<span class="number">1</span>]-Hase[j][<span class="number">1</span>]*fac[len-j-j][<span class="number">1</span>]%mod[<span class="number">1</span>]+mod[<span class="number">1</span>])%mod[<span class="number">1</span>];</span><br><span class="line">                ans += mp[<span class="built_in">make_pair</span>(hs5,hs6)];</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        mp[<span class="built_in">make_pair</span>(val[<span class="number">0</span>],val[<span class="number">1</span>])]++;</span><br><span class="line">    }</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+
+                    </article>
+                    
+    <blockquote class="post-license">
+        <p>
+            <strong>本文作者&nbsp;:&nbsp;wtfff</strong>
+            <br>
+            <strong>
+            
+                本作品采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-SA 4.0）</a>进行许可。This blog is under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
+            </strong>
+            <br>
+            <strong>本文链接&nbsp;:&nbsp;</strong><a href="http://im0use.github.io/2022/05/19/acm_solve/">http://im0use.github.io/2022/05/19/acm_solve/</a>
+        </p>
+    </blockquote>
+
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
+    <script>
+    (function() {
+        var dateUpdate = Date.parse("2022-05-18");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    })();
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2022-05-18T16:38:56.000Z" itemprop="datePublished">2022-05-19</time>
+
+    , 最后修改于&nbsp;<time datetime="2022-05-18T14:33:25.484Z" itemprop="dateModified">2022-05-18</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/2022/05/18/HITCON-train-hacknote/" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">HITCON-train-hacknote</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="http://im0use.github.io">wtf</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>
