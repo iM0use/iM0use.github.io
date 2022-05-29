@@ -246,6 +246,29 @@
   </entry>
   
   <entry>
+    <title>HITCON-train-echo1</title>
+    <link href="http://im0use.github.io/2022/05/18/echo1/"/>
+    <id>http://im0use.github.io/2022/05/18/echo1/</id>
+    <published>2022-05-18T14:43:16.000Z</published>
+    <updated>2022-05-29T01:03:53.204Z</updated>
+    
+    <content type="html"><![CDATA[<span id="more"></span><p>开始时会让我们输入在栈上的name，限制长度，bss段的id会复制name。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;p&gt;开始时会让我们输入在栈上的name，限制长度，bss段的id会复制name。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>fixed_xor</title>
     <link href="http://im0use.github.io/2022/05/18/fixed_cor/"/>
     <id>http://im0use.github.io/2022/05/18/fixed_cor/</id>
@@ -263,29 +286,6 @@
 &lt;p&gt;we need know some tools&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>HITCON-train-echo1</title>
-    <link href="http://im0use.github.io/2022/05/18/echo1/"/>
-    <id>http://im0use.github.io/2022/05/18/echo1/</id>
-    <published>2022-05-18T14:43:16.000Z</published>
-    <updated>2022-05-29T01:03:53.204Z</updated>
-    
-    <content type="html"><![CDATA[<span id="more"></span><p>开始时会让我们输入在栈上的name，限制长度，bss段的id会复制name。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
-
-&lt;p&gt;开始时会让我们输入在栈上的name，限制长度，bss段的id会复制name。&lt;/p&gt;
-</summary>
       
     
     
