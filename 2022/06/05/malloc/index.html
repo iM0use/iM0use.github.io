@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
+    
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <meta name="renderer" content="webkit">
+
+    <!-- Title -->
+    <title>malloc | wtf</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/aaa.ico">
+
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    <link rel="preload" href="/css/highlight/monokai-sublime.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/highlight/monokai-sublime.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="wtf"><meta name="msapplication-starturl" content="http://im0use.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="wtf"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="malloc | wtf"><meta property="og:site_name" content="wtf"><meta property="og:type" content="article"><meta property="og:url" content="http://im0use.github.io/2022/06/05/malloc/"><meta property="og:locale" content="zh-CN"><meta name="description" content="There are some cases about heap you want. - wtfff - wtf"><meta property="og:image" content="http://im0use.github.io/images/mmap_brk.png"><meta property="og:image" content="http://im0use.github.io/images/getMoreMem.png"><meta property="og:image" content="http://im0use.github.io/images/top_chunk.png"><meta property="og:image" content="http://im0use.github.io/images/struct.png"><meta property="og:image" content="http://im0use.github.io/images/heap_got.png"><meta property="og:image" content="http://im0use.github.io/images/over.png"><meta property="og:image" content="http://im0use.github.io/images/addr_tar.png"><meta property="og:image" content="http://im0use.github.io/images/over_pay.png"><meta property="og:image" content="http://im0use.github.io/images/over_pay2.png"><meta property="article:published_time" content="2022-06-05T14:43:16.000Z"><meta property="article:modified_time" content="2022-05-29T15:46:38.365Z"><meta property="og:updated_time" content="2022-05-29T15:46:38.365Z"><meta property="article:author" content="wtfff"><meta name="twitter:card" content="summary">
+
+    
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://im0use.github.io/2022/06/05/malloc/">
+
+    <meta name="generator" content="Hexo 5.4.2">
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://im0use.github.io/2022/06/05/malloc/",
+    "@type": "BlogPosting",
+    "logo": "http://im0use.github.io/img/aaa.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://im0use.github.io/2022/06/05/malloc/"
+    },
+    "headline": "malloc | wtf",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://im0use.github.io/img/aaa.ico"
+    },
+    
+    "datePublished": "2022-06-05T14:43:16.000Z",
+    "dateModified": "2022-05-29T15:46:38.365Z",
+    "author": {
+        "@type": "Person",
+        "name": "wtfff",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.jpg"
+        },
+        "description": "WTF is white tight feet."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "wtf",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://im0use.github.io/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "There are some cases about heap you want. - wtfff - wtf"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">wtf</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                WTF is white tight feet.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">首页</a>
+    
+    
+        <a href="/archives/" class="navbar-link">归档</a>
+    
+    
+    
+        <a href="/about/" class="navbar-link">About</a>
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=wtf&url=http://im0use.github.io&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=wtf&url=http://im0use.github.io&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io&title=malloc" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=malloc&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://im0use.github.io&text=malloc" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAAAAAB0L9x7AAABiElEQVR42u3bQQ7CMAxE0d7/0rBFyPGMC2on1e8GoUL6kCLHdsLxCrgOECBAbIE4muvz/nIg8b3VfRDZiNXg1WDV/WocNS6IfEQ1sb4n3+r96jNyXBBbIrogVAUsEM9HOItWGYhAbI9oFxpjEnagn1dREJcjVKJ79vWv2TaIyxCyaG0S2e4Bf63KQVyKqApflfR2i5izmIHIR3QDqgdMiujRAgbiNkRV0KpCqAOpIqiNmCDiEBWmw6riSCbNIKIRzsNUEts1WssfBCIa4QaYSTNNTlgQWyDcgqZrxKviGMR+iMkDJz9ilNSAuBXRNUfVJpxbDIPYDzGZnF1SrBrzIPIRXZPUTXrUQicTXRBRiFWTxGpyiE05GdRAxCLcQHMGYU9MEFGIyUacc0hUbdiByEZMDgq7i5XbnAWRi3A21dwGintgGEQ+wjkAqAJRB7X+UABiC8TyAIZovjsTFcQzEG4B7SQ9ILIRqiGqmmRugnRqFQVxOcJNdGXwMf9kACIbcecFAgSIaMQbrw4IR2SxsKkAAAAASUVORK5CYII=" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">malloc</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/img/aaa.jpg" src="/img/suka-lazyload.gif" alt="wtfff's Avatar">
+        <span>2022-06-05</span>
+        
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">分享本文</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=malloc&url=http://im0use.github.io/2022/06/05/malloc/&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=malloc&url=http://im0use.github.io/2022/06/05/malloc/&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io/2022/06/05/malloc/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://im0use.github.io/2022/06/05/malloc/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io/2022/06/05/malloc/&title=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=wtf&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io/2022/06/05/malloc/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://im0use.github.io/2022/06/05/malloc/&text=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAAAAAB0L9x7AAABiElEQVR42u3bQQ7CMAxE0d7/0rBFyPGMC2on1e8GoUL6kCLHdsLxCrgOECBAbIE4muvz/nIg8b3VfRDZiNXg1WDV/WocNS6IfEQ1sb4n3+r96jNyXBBbIrogVAUsEM9HOItWGYhAbI9oFxpjEnagn1dREJcjVKJ79vWv2TaIyxCyaG0S2e4Bf63KQVyKqApflfR2i5izmIHIR3QDqgdMiujRAgbiNkRV0KpCqAOpIqiNmCDiEBWmw6riSCbNIKIRzsNUEts1WssfBCIa4QaYSTNNTlgQWyDcgqZrxKviGMR+iMkDJz9ilNSAuBXRNUfVJpxbDIPYDzGZnF1SrBrzIPIRXZPUTXrUQicTXRBRiFWTxGpyiE05GdRAxCLcQHMGYU9MEFGIyUacc0hUbdiByEZMDgq7i5XbnAWRi3A21dwGintgGEQ+wjkAqAJRB7X+UABiC8TyAIZovjsTFcQzEG4B7SQ9ILIRqiGqmmRugnRqFQVxOcJNdGXwMf9kACIbcecFAgSIaMQbrw4IR2SxsKkAAAAASUVORK5CYII=" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                        
+                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x01-System-call-mmap-brk"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x01 System call - mmap, brk</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x02-malloc-implement"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x02 malloc implement</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DLmalloc"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">DLmalloc</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#workflow"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">workflow</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x03-small-code-cases"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x03 small code cases</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x04-overwrite"><span class="post-toc-number">4.</span> <span class="post-toc-text">0x04 overwrite</span></a></li></ol></div>
+                        
+                    
+                    <article id="post-content">
+                        <p>There are some cases about heap you want.</p>
+<span id="more"></span>
+
+<h2 id="0x01-System-call-mmap-brk"><a href="#0x01-System-call-mmap-brk" class="headerlink" title="0x01 System call - mmap, brk"></a>0x01 System call - mmap, brk</h2><ul>
+<li>malloc get memory firstly</li>
+</ul>
+<img src="\images\mmap_brk.png">
+
+<ul>
+<li>system calls - ask the kernel directly<ul>
+<li>mmap()<ul>
+<li>ask kernel give us some <em>new virtual addresses</em></li>
+</ul>
+</li>
+<li>brk()<ul>
+<li>change <strong>data segment</strong> <em>size</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>process doesn’t care how the memory is implemented.</p>
+</blockquote>
+<p>allocated memory through <code>Linux Kernel</code> and <code>CPU's MMU</code> etc map to process. Then <strong>process</strong> can <em>transparently</em> access these <strong>memory</strong>.</p>
+<img src="\images\getMoreMem.png">
+
+<p>In CTF match, we use very little space to malloc, so brk system call doesn’t appear.</p>
+<p>How malloc work?</p>
+<h2 id="0x02-malloc-implement"><a href="#0x02-malloc-implement" class="headerlink" title="0x02 malloc implement"></a>0x02 malloc implement</h2><p>Easily we consider the large region as heap.</p>
+<p>Now, we want a size 8 memory to write some chars like <code>AAAABBBB</code>. use <code>malloc(8)</code>. Then return a address can be writed.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804000</span><br><span class="line">| A A A A | B B B B |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804010</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804020</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804030</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804040</span><br></pre></td></tr></table></figure>
+
+<p>If <code>malloc(8)</code> again, what will happen</p>
+<p>guess</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804000</span><br><span class="line">| A A A A | B B B B | A A A A | B B B B |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804010</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804020</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804030</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804040</span><br></pre></td></tr></table></figure>
+
+<p>if this is reality, some questions here.</p>
+<ul>
+<li>how does malloc know what address to return?</li>
+<li>how does malloc know which areas are still free?</li>
+</ul>
+<p>some implement here.</p>
+<h3 id="DLmalloc"><a href="#DLmalloc" class="headerlink" title="DLmalloc"></a>DLmalloc</h3><p>most common use in malloc.</p>
+<h4 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h4><ul>
+<li><strong>store</strong> for each chunk it <strong>blocks</strong> the <em>size</em> of chunk right before it.</li>
+<li>keep 4 bytes before chunk (before freed)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">			   ret_addr: 0x804008</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804000</span><br><span class="line">|         |size:0x10| A A A A | B B B B |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804010</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804020</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804030</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804040</span><br></pre></td></tr></table></figure>
+
+<p>first malloc return address can be calculated equal 0x804000+0x8=0x804008</p>
+<p>Then, how does malloc know the next address after called where the next chunk can be placed?</p>
+<p>If start of the free/available area: 0x804000, next chunk address at start + now_chunk_size, so at 0x804000 + 0x10(size) = 0x804010. The will happen at malloc of system calls.</p>
+<p>So there is a point somewhere at always point to a free memory.</p>
+<img src="\images\top_chunk.png">
+
+<p>Given the returned address of malloc, what can we do with that?</p>
+<ul>
+<li>Writable data addr: this pointer points to the start where we can write data to.</li>
+<li>Size of chunk: before writable data addr.</li>
+<li>Next chunk addr: <code>start of current chunk addr</code> add <code>size of this chunk</code></li>
+</ul>
+<h2 id="0x03-small-code-cases"><a href="#0x03-small-code-cases" class="headerlink" title="0x03 small code cases"></a>0x03 small code cases</h2><p>heap1.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">internet</span> {</span></span><br><span class="line">    <span class="type">int</span>     priority;</span><br><span class="line">    <span class="type">char</span>    *name;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">winner</span><span class="params">()</span></span><br><span class="line">{</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"and we have a winner @ %d\n"</span>, time(<span class="literal">NULL</span>));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span><br><span class="line">{</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">internet</span> *<span class="title">i1</span>, *<span class="title">i2</span>, *<span class="title">i3</span>;</span></span><br><span class="line"></span><br><span class="line">    i1 = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> internet));</span><br><span class="line">    i1-&gt;priority = <span class="number">1</span>;</span><br><span class="line">    i1-&gt;name = <span class="built_in">malloc</span>(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    i2 = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> internet));</span><br><span class="line">    i2-&gt;priority = <span class="number">1</span>;</span><br><span class="line">    i2-&gt;name = <span class="built_in">malloc</span>(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">strcpy</span>(i1-&gt;name, argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">strcpy</span>(i2-&gt;name, argv[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"and that's a wrap folks\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>objective -&gt; winner</li>
+<li>struct <em>internet</em><ul>
+<li>first member: priority, (type): int</li>
+<li>second member: name, (type): char point (means contain a point to a string somewhere else)</li>
+</ul>
+</li>
+</ul>
+<p><code>*</code>pointer(meaning: contains an address)</p>
+<img src="\images\struct.png">
+
+<p>In 32-Bit machine, point size(a address size) equal 4 bits, but 8 bits in 64-Bit machine.</p>
+<p><code>malloc(sizeof(struct internet))</code>So a chunk size: 4(int) + 4(char *) = 8 (tests in 32Bit) <code>i1-&gt;priority = 1;</code> write 1 to the first 4 byte of the allocated area.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">				 int priority  char *name</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804d198(i1=0x804d198+8)</span><br><span class="line">|         |size:0x10|   0x1   |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804d1a8</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804d1b8</span><br><span class="line">|         |         |         |         |</span><br><span class="line">+—————————+—————————+—————————+—————————+ &lt;- 0x804d1c8</span><br></pre></td></tr></table></figure>
+
+<p>name point at offset = 4 of i1 object(name point at: i1 + 4).<code>i1-&gt;name = malloc(8);</code>Then it allocates another 8 byte, and the resulting address will stored in the char point name. Those 8 bytes are intended to store a list of characters. </p>
+<p>As a programmer, we use <code>i1-&gt;name</code> to access name member property. As simply going to a certain offset of i1, in this case i1+4 is the location of the char point name. <code>i1-&gt;name [(0x804d198+8)+4]</code>. <code>[num]</code> express access address in the num address which means fetch info indirectly.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; heap</span><br><span class="line">Allocated chunk | PREV_INUSE</span><br><span class="line">Addr: 0x804d008</span><br><span class="line">Size: 0x191</span><br><span class="line"></span><br><span class="line">Allocated chunk | PREV_INUSE</span><br><span class="line">Addr: 0x804d198</span><br><span class="line">Size: 0x11</span><br><span class="line"></span><br><span class="line">Top chunk | PREV_INUSE</span><br><span class="line">Addr: 0x804d1a8</span><br><span class="line">Size: 0x21e59</span><br><span class="line"></span><br><span class="line">pwndbg&gt; x/12wx 0x804d198</span><br><span class="line">0x804d198:      0x00000000      0x00000011      0x00000000      0x00000000</span><br><span class="line">0x804d1a8:      0x00000000      0x00021e59      0x00000000      0x00000000</span><br></pre></td></tr></table></figure>
+
+<p>i2 looks like i1.</p>
+<p>We enable the <code>argv[1] = "aaaabbbb", argv[2] = "aaaabbbb";</code>, so heap info behind.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; r aaaabbbb aaaabbbb</span><br><span class="line">pwndbg&gt; ...</span><br><span class="line">pwndbg&gt; x/22wx 0x804d198</span><br><span class="line">0x804d198:      0x00000000      0x00000011      0x00000001      0x0804d1b0 &lt;- i1's priority, *name</span><br><span class="line">0x804d1a8:      0x00000000      0x00000011      0x61616161      0x62626262 &lt;- il's name content</span><br><span class="line">0x804d1b8:      0x00000000      0x00000011      0x00000001      0x0804d1d0 &lt;- i2's priority, *name</span><br><span class="line">0x804d1c8:      0x00000000      0x00000011      0x61616161      0x62626262 &lt;- i2's name content</span><br><span class="line">0x804d1d8:      0x00000000      0x00021e29      0x00000000      0x00000000</span><br></pre></td></tr></table></figure>
+
+<p>a dangerous function! <code>strcpy</code></p>
+<p><code>strcpy</code> has no length check. So we can overflow name when write over 8 byte and really screw up stuff.</p>
+<p>size low bit indicate that the PREVIOUS chunk is used, so we find it is 0x11 not 0x10. That becomes more important for the <code>free()</code></p>
+<p>The dlmalloc is not really the original dlmalloc. It is usually referred to as ptmalloc.</p>
+<h2 id="0x04-overwrite"><a href="#0x04-overwrite" class="headerlink" title="0x04 overwrite"></a>0x04 overwrite</h2><p>heap overflow works not well. overwrite somewhat? It actually is called <strong>got overwrite</strong>.</p>
+<p>GOT - <code>_GLOBAL_OFFSET_TABLE_</code> : record function offset in program running.</p>
+<p>function call use the plt addr.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-&gt; 0x08049312 &lt;+192&gt;:   call   0x80490e0 &lt;puts@plt&gt;</span><br><span class="line">pwndbg&gt; disassemble 0x80490e0</span><br><span class="line">Dump of assembler code for function puts@plt:</span><br><span class="line">   0x080490e0 &lt;+0&gt;:     endbr32 </span><br><span class="line">   0x080490e4 &lt;+4&gt;:     jmp    DWORD PTR ds:0x804c01c  &lt;-puts@got</span><br><span class="line">   0x080490ea &lt;+10&gt;:    nop    WORD PTR [eax+eax*1+0x0]</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+
+<p>we need pad some chars to overwrite the i2 name point address.</p>
+<p>it looks like this.</p>
+<img src="\images\heap_got.png">
+
+<p>If we write on i2 name, what will happen?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; x 0x804c01c</span><br><span class="line">0x804c01c &lt;puts@got.plt&gt;:       0xf7e33c40 &lt;- puts in libc.6</span><br></pre></td></tr></table></figure>
+
+<img src="\images\over.png">
+
+<img src="\images\addr_tar.png">
+
+<p>so payload</p>
+<img src="\images\over_pay.png">
+
+<p>or</p>
+<img src="\images\over_pay2.png">
+
+                    </article>
+                    
+    <blockquote class="post-license">
+        <p>
+            <strong>本文作者&nbsp;:&nbsp;wtfff</strong>
+            <br>
+            <strong>
+            
+                本作品采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-SA 4.0）</a>进行许可。This blog is under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
+            </strong>
+            <br>
+            <strong>本文链接&nbsp;:&nbsp;</strong><a href="http://im0use.github.io/2022/06/05/malloc/">http://im0use.github.io/2022/06/05/malloc/</a>
+        </p>
+    </blockquote>
+
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
+    <script>
+    (function() {
+        var dateUpdate = Date.parse("2022-05-29");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    })();
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2022-06-05T14:43:16.000Z" itemprop="datePublished">2022-06-05</time>
+
+    , 最后修改于&nbsp;<time datetime="2022-05-29T15:46:38.365Z" itemprop="dateModified">2022-05-29</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/2022/06/08/hitcon-train/" rel="prev">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">HITCON-train</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/2022/06/01/unlink/" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">unlink</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="http://im0use.github.io">wtf</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>
