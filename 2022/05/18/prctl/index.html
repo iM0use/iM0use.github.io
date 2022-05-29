@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
+    
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <meta name="renderer" content="webkit">
+
+    <!-- Title -->
+    <title>prctl | wtf</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/aaa.ico">
+
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    <link rel="preload" href="/css/highlight/monokai-sublime.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/highlight/monokai-sublime.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="wtf"><meta name="msapplication-starturl" content="http://im0use.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="wtf"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="prctl | wtf"><meta property="og:site_name" content="wtf"><meta property="og:type" content="article"><meta property="og:url" content="http://im0use.github.io/2022/05/18/prctl/"><meta property="og:locale" content="zh-CN"><meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210 - wtfff - wtf"><meta property="article:published_time" content="2022-05-18T14:43:16.000Z"><meta property="article:modified_time" content="2022-05-29T00:58:28.424Z"><meta property="og:updated_time" content="2022-05-29T00:58:28.424Z"><meta property="article:author" content="wtfff"><meta name="twitter:card" content="summary">
+
+    
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://im0use.github.io/2022/05/18/prctl/">
+
+    <meta name="generator" content="Hexo 5.4.2">
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://im0use.github.io/2022/05/18/prctl/",
+    "@type": "BlogPosting",
+    "logo": "http://im0use.github.io/img/aaa.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://im0use.github.io/2022/05/18/prctl/"
+    },
+    "headline": "prctl | wtf",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://im0use.github.io/img/aaa.ico"
+    },
+    
+    "datePublished": "2022-05-18T14:43:16.000Z",
+    "dateModified": "2022-05-29T00:58:28.424Z",
+    "author": {
+        "@type": "Person",
+        "name": "wtfff",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.jpg"
+        },
+        "description": "WTF is white tight feet."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "wtf",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://im0use.github.io/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210 - wtfff - wtf"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">wtf</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                WTF is white tight feet.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">首页</a>
+    
+    
+        <a href="/archives/" class="navbar-link">归档</a>
+    
+    
+    
+        <a href="/about/" class="navbar-link">About</a>
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=wtf&url=http://im0use.github.io&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=wtf&url=http://im0use.github.io&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io&title=prctl" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=prctl&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://im0use.github.io&text=prctl" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAAAAAB0L9x7AAABhUlEQVR42u3ayw4CIQyF4Xn/l9aNC2Noz2lmhEL+2ZiMCt+C9AJcrwbPBQIEiC0QV/KkA3y+j/7njAuiLyKbZPT+e6Lf347eReOC6I0YLazRpKMJ3YUL4hxEtDjTQATiaEQ0iEpgIPZGZMEmS1JRAfRoFgUxHZEFnjufj1XbIKYiZNNqokZFz2NdOYipCNXYKpTzLgxoINoinKZmVMy4GyelBAZiOaISnKLAVC1sQPRGOJsg0aJ1kle24EH0RqiAlTW4Cl9KYCCWI6qLzS14nI04EHsgooOVCOg0xGERBKIlwj1Ec5OZs+kOYh+EewibNTlOAQSiP8ItWCobKCqRgeiNUImrUrw4G20g9kBkjYrb4FQSHoh9EP8MUvICIIgWCOcgzm2IK5c8QPRFuBeF3UvAqjG2du9ALEeoiz3qcl82WRrkQLRGuBeFVRC6nUVBbIGQBat5CAfiLITTPGdBzG5+QLRBlBeVaJzVphmI3ginkVWNsrzYdafaBjEVsfIBAQJEa8Qbl9S5eXKLLHMAAAAASUVORK5CYII=" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">prctl</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/img/aaa.jpg" src="/img/suka-lazyload.gif" alt="wtfff's Avatar">
+        <span>2022-05-18</span>
+        
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">分享本文</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=prctl&url=http://im0use.github.io/2022/05/18/prctl/&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=prctl&url=http://im0use.github.io/2022/05/18/prctl/&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io/2022/05/18/prctl/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://im0use.github.io/2022/05/18/prctl/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io/2022/05/18/prctl/&title=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=wtf&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io/2022/05/18/prctl/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://im0use.github.io/2022/05/18/prctl/&text=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAAAAAB0L9x7AAABhUlEQVR42u3ayw4CIQyF4Xn/l9aNC2Noz2lmhEL+2ZiMCt+C9AJcrwbPBQIEiC0QV/KkA3y+j/7njAuiLyKbZPT+e6Lf347eReOC6I0YLazRpKMJ3YUL4hxEtDjTQATiaEQ0iEpgIPZGZMEmS1JRAfRoFgUxHZEFnjufj1XbIKYiZNNqokZFz2NdOYipCNXYKpTzLgxoINoinKZmVMy4GyelBAZiOaISnKLAVC1sQPRGOJsg0aJ1kle24EH0RqiAlTW4Cl9KYCCWI6qLzS14nI04EHsgooOVCOg0xGERBKIlwj1Ec5OZs+kOYh+EewibNTlOAQSiP8ItWCobKCqRgeiNUImrUrw4G20g9kBkjYrb4FQSHoh9EP8MUvICIIgWCOcgzm2IK5c8QPRFuBeF3UvAqjG2du9ALEeoiz3qcl82WRrkQLRGuBeFVRC6nUVBbIGQBat5CAfiLITTPGdBzG5+QLRBlBeVaJzVphmI3ginkVWNsrzYdafaBjEVsfIBAQJEa8Qbl9S5eXKLLHMAAAAASUVORK5CYII=" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                        
+                    
+                    <article id="post-content">
+                        <span id="more"></span>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/types.h&gt;</span></span></span><br><span class="line"><span class="comment">/* Values to pass as first argument to prctl() */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_PDEATHSIG  1  <span class="comment">/* Second arg is a signal */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_PDEATHSIG  2  <span class="comment">/* Second arg is a ptr to return the signal */</span></span></span><br><span class="line"><span class="comment">/* Get/set current-&gt;mm-&gt;dumpable */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_DUMPABLE   3</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_DUMPABLE   4</span></span><br><span class="line"><span class="comment">/* Get/set unaligned access control bits (if meaningful) */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_UNALIGN	  5</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_UNALIGN	  6</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_UNALIGN_NOPRINT	1	<span class="comment">/* silently fix up unaligned user accesses */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_UNALIGN_SIGBUS	2	<span class="comment">/* generate SIGBUS on unaligned user access */</span></span></span><br><span class="line"><span class="comment">/* Get/set whether or not to drop capabilities on setuid() away from</span></span><br><span class="line"><span class="comment"> * uid 0 (as per security/commoncap.c) */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_KEEPCAPS   7</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_KEEPCAPS   8</span></span><br><span class="line"><span class="comment">/* Get/set floating-point emulation control bits (if meaningful) */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_FPEMU  9</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_FPEMU 10</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FPEMU_NOPRINT	1	<span class="comment">/* silently emulate fp operations accesses */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FPEMU_SIGFPE	2	<span class="comment">/* don't emulate fp operations, send SIGFPE instead */</span></span></span><br><span class="line"><span class="comment">/* Get/set floating-point exception mode (if meaningful) */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_FPEXC	11</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_FPEXC	12</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_SW_ENABLE	0x80	<span class="comment">/* Use FPEXC for FP exception enables */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_DIV		0x010000	<span class="comment">/* floating point divide by zero */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_OVF		0x020000	<span class="comment">/* floating point overflow */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_UND		0x040000	<span class="comment">/* floating point underflow */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_RES		0x080000	<span class="comment">/* floating point inexact result */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_INV		0x100000	<span class="comment">/* floating point invalid operation */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_DISABLED	0	<span class="comment">/* FP exceptions disabled */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_NONRECOV	1	<span class="comment">/* async non-recoverable exc. mode */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_ASYNC	2	<span class="comment">/* async recoverable exception mode */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_EXC_PRECISE	3	<span class="comment">/* precise exception mode */</span></span></span><br><span class="line"><span class="comment">/* Get/set whether we use statistical process timing or accurate timestamp</span></span><br><span class="line"><span class="comment"> * based process timing */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_TIMING   13</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_TIMING   14</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_TIMING_STATISTICAL  0       <span class="comment">/* Normal, traditional,</span></span></span><br><span class="line"><span class="comment"><span class="meta">                                                   statistical process timing */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_TIMING_TIMESTAMP    1       <span class="comment">/* Accurate timestamp based</span></span></span><br><span class="line"><span class="comment"><span class="meta">                                                   process timing */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_NAME    15		<span class="comment">/* Set process name */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_NAME    16		<span class="comment">/* Get process name */</span></span></span><br><span class="line"><span class="comment">/* Get/set process endian */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_ENDIAN	19</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_ENDIAN	20</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_ENDIAN_BIG		0</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_ENDIAN_LITTLE	1	<span class="comment">/* True little endian mode */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_ENDIAN_PPC_LITTLE	2	<span class="comment">/* "PowerPC" pseudo little endian */</span></span></span><br><span class="line"><span class="comment">/* Get/set process seccomp mode */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_SECCOMP	21</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_SECCOMP	22</span></span><br><span class="line"><span class="comment">/* Get/set the capability bounding set (as per security/commoncap.c) */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_CAPBSET_READ 23</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_CAPBSET_DROP 24</span></span><br><span class="line"><span class="comment">/* Get/set the process' ability to use the timestamp counter instruction */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_TSC 25</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_TSC 26</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_TSC_ENABLE		1	<span class="comment">/* allow the use of the timestamp counter */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_TSC_SIGSEGV		2	<span class="comment">/* throw a SIGSEGV instead of reading the TSC */</span></span></span><br><span class="line"><span class="comment">/* Get/set securebits (as per security/commoncap.c) */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_SECUREBITS 27</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_SECUREBITS 28</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Get/set the timerslack as used by poll/select/nanosleep</span></span><br><span class="line"><span class="comment"> * A value of 0 means "use default"</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_TIMERSLACK 29</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_TIMERSLACK 30</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_TASK_PERF_EVENTS_DISABLE		31</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_TASK_PERF_EVENTS_ENABLE		32</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Set early/late kill mode for hwpoison memory corruption.</span></span><br><span class="line"><span class="comment"> * This influences when the process gets killed on a memory corruption.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_MCE_KILL	33</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_MCE_KILL_CLEAR   0</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_MCE_KILL_SET     1</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_MCE_KILL_LATE    0</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_MCE_KILL_EARLY   1</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_MCE_KILL_DEFAULT 2</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_MCE_KILL_GET 34</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Tune up process memory map specifics.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_MM		35</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_START_CODE		1</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_END_CODE		2</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_START_DATA		3</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_END_DATA		4</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_START_STACK		5</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_START_BRK		6</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_BRK			7</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_ARG_START		8</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_ARG_END		9</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_ENV_START		10</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_ENV_END		11</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_AUXV			12</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_EXE_FILE		13</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_MAP			14</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_MM_MAP_SIZE		15</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * This structure provides new memory descriptor</span></span><br><span class="line"><span class="comment"> * map which mostly modifies /proc/pid/stat[m]</span></span><br><span class="line"><span class="comment"> * output for a task. This mostly done in a</span></span><br><span class="line"><span class="comment"> * sake of checkpoint/restore functionality.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">prctl_mm_map</span> {</span></span><br><span class="line">	__u64	start_code;		<span class="comment">/* code section bounds */</span></span><br><span class="line">	__u64	end_code;</span><br><span class="line">	__u64	start_data;		<span class="comment">/* data section bounds */</span></span><br><span class="line">	__u64	end_data;</span><br><span class="line">	__u64	start_brk;		<span class="comment">/* heap for brk() syscall */</span></span><br><span class="line">	__u64	brk;</span><br><span class="line">	__u64	start_stack;		<span class="comment">/* stack starts at */</span></span><br><span class="line">	__u64	arg_start;		<span class="comment">/* command line arguments bounds */</span></span><br><span class="line">	__u64	arg_end;</span><br><span class="line">	__u64	env_start;		<span class="comment">/* environment variables bounds */</span></span><br><span class="line">	__u64	env_end;</span><br><span class="line">	__u64	*auxv;			<span class="comment">/* auxiliary vector */</span></span><br><span class="line">	__u32	auxv_size;		<span class="comment">/* vector size */</span></span><br><span class="line">	__u32	exe_fd;			<span class="comment">/* /proc/$pid/exe link file */</span></span><br><span class="line">};</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Set specific pid that is allowed to ptrace the current task.</span></span><br><span class="line"><span class="comment"> * A value of 0 mean "no process".</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_PTRACER 0x59616d61</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SET_PTRACER_ANY ((unsigned long)-1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_CHILD_SUBREAPER	36</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_CHILD_SUBREAPER	37</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * If no_new_privs is set, then operations that grant new privileges (i.e.</span></span><br><span class="line"><span class="comment"> * execve) will either fail or not grant them.  This affects suid/sgid,</span></span><br><span class="line"><span class="comment"> * file capabilities, and LSMs.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Operations that merely manipulate or drop existing privileges (setresuid,</span></span><br><span class="line"><span class="comment"> * capset, etc.) will still work.  Drop those privileges if you want them gone.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Changing LSM security domain is considered a new privilege.  So, for example,</span></span><br><span class="line"><span class="comment"> * asking selinux for a specific new context (e.g. with runcon) will result</span></span><br><span class="line"><span class="comment"> * in execve returning -EPERM.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * See Documentation/prctl/no_new_privs.txt for more details.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_NO_NEW_PRIVS	38</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_NO_NEW_PRIVS	39</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_TID_ADDRESS	40</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_THP_DISABLE	41</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_THP_DISABLE	42</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Tell the kernel to start/stop helping userspace manage bounds tables.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_MPX_ENABLE_MANAGEMENT  43</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_MPX_DISABLE_MANAGEMENT 44</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_FP_MODE		45</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_FP_MODE		46</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_MODE_FR		(1 &lt;&lt; 0)	<span class="comment">/* 64b FP registers */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_FP_MODE_FRE		(1 &lt;&lt; 1)	<span class="comment">/* 32b compatibility */</span></span></span><br><span class="line"><span class="comment">/* Control the ambient capability set */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_CAP_AMBIENT			47</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_CAP_AMBIENT_IS_SET		1</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_CAP_AMBIENT_RAISE		2</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_CAP_AMBIENT_LOWER		3</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_CAP_AMBIENT_CLEAR_ALL	4</span></span><br><span class="line"><span class="comment">/* arm64 Scalable Vector Extension controls */</span></span><br><span class="line"><span class="comment">/* Flag values must be kept in sync with ptrace NT_ARM_SVE interface */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SVE_SET_VL			50	<span class="comment">/* set task vector length */</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SVE_SET_VL_ONEXEC		(1 &lt;&lt; 18) <span class="comment">/* defer effect until exec */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SVE_GET_VL			51	<span class="comment">/* get task vector length */</span></span></span><br><span class="line"><span class="comment">/* Bits common to PR_SVE_SET_VL and PR_SVE_GET_VL */</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SVE_VL_LEN_MASK		0xffff</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SVE_VL_INHERIT		(1 &lt;&lt; 17) <span class="comment">/* inherit across exec */</span></span></span><br><span class="line"><span class="comment">/* Per task speculation control */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_GET_SPECULATION_CTRL		52</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PR_SET_SPECULATION_CTRL		53</span></span><br><span class="line"><span class="comment">/* Speculation control variants */</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SPEC_STORE_BYPASS		0</span></span><br><span class="line"><span class="comment">/* Return and control values for PR_SET/GET_SPECULATION_CTRL */</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SPEC_NOT_AFFECTED		0</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SPEC_PRCTL			(1UL &lt;&lt; 0)</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SPEC_ENABLE			(1UL &lt;&lt; 1)</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SPEC_DISABLE		(1UL &lt;&lt; 2)</span></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> PR_SPEC_FORCE_DISABLE		(1UL &lt;&lt; 3)</span></span><br></pre></td></tr></table></figure>
+
+
+                    </article>
+                    
+    <blockquote class="post-license">
+        <p>
+            <strong>本文作者&nbsp;:&nbsp;wtfff</strong>
+            <br>
+            <strong>
+            
+                本作品采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-SA 4.0）</a>进行许可。This blog is under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
+            </strong>
+            <br>
+            <strong>本文链接&nbsp;:&nbsp;</strong><a href="http://im0use.github.io/2022/05/18/prctl/">http://im0use.github.io/2022/05/18/prctl/</a>
+        </p>
+    </blockquote>
+
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
+    <script>
+    (function() {
+        var dateUpdate = Date.parse("2022-05-29");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    })();
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2022-05-18T14:43:16.000Z" itemprop="datePublished">2022-05-18</time>
+
+    , 最后修改于&nbsp;<time datetime="2022-05-29T00:58:28.424Z" itemprop="dateModified">2022-05-29</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/2022/05/18/fixed_cor/" rel="prev">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">fixed_xor</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/2022/05/16/hex2base64/" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">hex2base64</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="http://im0use.github.io">wtf</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>
