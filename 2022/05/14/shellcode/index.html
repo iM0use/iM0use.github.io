@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
+    
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <meta name="renderer" content="webkit">
+
+    <!-- Title -->
+    <title>hello_world in shellcode | wtf</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/aaa.ico">
+
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    <link rel="preload" href="/css/highlight/monokai-sublime.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/highlight/monokai-sublime.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="wtf"><meta name="msapplication-starturl" content="http://im0use.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="wtf"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="hello_world in shellcode | wtf"><meta property="og:site_name" content="wtf"><meta property="og:type" content="article"><meta property="og:url" content="http://im0use.github.io/2022/05/14/shellcode/"><meta property="og:locale" content="zh-CN"><meta name="description" content="hello_world in shellcodeget syscalls系统调用号：  32位：&#x2F;usr&#x2F;include&#x2F;x86_64-linux-gnu&#x2F;asm&#x2F;unistd_32.h 64位：&#x2F;usr&#x2F;include&#x2F;x86_64-linux-gnu&#x2F;asm&#x2F;unistd_64.h   以下实验均以64位实验环境作为实验基础  register transmit arguments   arc - wtfff - wtf"><meta property="article:published_time" content="2022-05-14T14:43:16.000Z"><meta property="article:modified_time" content="2022-06-03T05:18:28.611Z"><meta property="og:updated_time" content="2022-06-03T05:18:28.611Z"><meta property="article:author" content="wtfff"><meta name="twitter:card" content="summary">
+
+    
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://im0use.github.io/2022/05/14/shellcode/">
+
+    <meta name="generator" content="Hexo 5.4.2">
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://im0use.github.io/2022/05/14/shellcode/",
+    "@type": "BlogPosting",
+    "logo": "http://im0use.github.io/img/aaa.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://im0use.github.io/2022/05/14/shellcode/"
+    },
+    "headline": "hello_world in shellcode | wtf",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://im0use.github.io/img/aaa.ico"
+    },
+    
+    "datePublished": "2022-05-14T14:43:16.000Z",
+    "dateModified": "2022-06-03T05:18:28.611Z",
+    "author": {
+        "@type": "Person",
+        "name": "wtfff",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.jpg"
+        },
+        "description": "WTF is white tight feet."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "wtf",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://im0use.github.io/img/aaa.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://im0use.github.io/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "hello_world in shellcodeget syscalls系统调用号：  32位：/usr/include/x86_64-linux-gnu/asm/unistd_32.h 64位：/usr/include/x86_64-linux-gnu/asm/unistd_64.h   以下实验均以64位实验环境作为实验基础  register transmit arguments   arc - wtfff - wtf"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">wtf</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                WTF is white tight feet.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">首页</a>
+    
+    
+        <a href="/archives/" class="navbar-link">归档</a>
+    
+    
+    
+        <a href="/about/" class="navbar-link">About</a>
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=wtf&url=http://im0use.github.io&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=wtf&url=http://im0use.github.io&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io&title=hello_world in shellcode" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=hello_world in shellcode&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://im0use.github.io&text=hello_world in shellcode" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB60lEQVR42u3a0W6EMAxEUf7/p9unSnSFZ8aglRJzeelqS8JZyQmxk+NnwesABQoUqAvUIa6//5/vO7f71+FHu8827jmgZqEug0505rDq/uo5oOahXCdV0F71U/049xxQ70BVE91VwF4+CBSoINBVIFcTJaj3odSLslrIOaiaVB+tEkAtj0oTh6d/v5LNgFoOZYsOIpjVA1Tbx1UXUEujriZCF+wVLHkhy0QW1BhU0rlLRKtArz63Z3RQW6FUo2oQdIpsSWEE1ByUSyTdQFAvYrfwk6sEUNuiOp26DaJ0kICajXKF+GRRpwojbhCBmolyE53tLExK7QYBqBGotACRJp3JwYryO1AjUJ3Ff7I5lLQtkw9QI1CdhVxnYnWodoYMahuUO9SQFv0dNElIQc1ApYe37gR8p2AGag6qCtqkmO8K+MkgkYVYUFuikkM1ycEHu8GYfAY1AhUFYHB4uVP8L+8HNQbV2YBODy4nG5a3drFALY9Sk10a7K6QESemoEagkgKsSzDUgYrO4UFQM1CdYEwCvRo8UREX1BhUN8BVYLuglgkKqFGodFNIJQfq+6iIBuoVqORQTuezfKmDeiXKHbpxCcStZBTUlihXhLgb4K2BAmoMKj1s4zYTW0mC29gGtS1qpQsUKFCgTtcvVQVPfis+mGsAAAAASUVORK5CYII=" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">hello_world in shellcode</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/img/aaa.jpg" src="/img/suka-lazyload.gif" alt="wtfff's Avatar">
+        <span>2022-05-14</span>
+        
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">分享本文</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=hello_world in shellcode&url=http://im0use.github.io/2022/05/14/shellcode/&pic=http://im0use.github.io/img/aaa.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=hello_world in shellcode&url=http://im0use.github.io/2022/05/14/shellcode/&via=wtfff" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://im0use.github.io/2022/05/14/shellcode/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://im0use.github.io/2022/05/14/shellcode/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://im0use.github.io/2022/05/14/shellcode/&title=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=wtf&title=wtf&summary=&pics=http://im0use.github.io/img/aaa.ico&url=http://im0use.github.io/2022/05/14/shellcode/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://im0use.github.io/2022/05/14/shellcode/&text=wtf" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB60lEQVR42u3a0W6EMAxEUf7/p9unSnSFZ8aglRJzeelqS8JZyQmxk+NnwesABQoUqAvUIa6//5/vO7f71+FHu8827jmgZqEug0505rDq/uo5oOahXCdV0F71U/049xxQ70BVE91VwF4+CBSoINBVIFcTJaj3odSLslrIOaiaVB+tEkAtj0oTh6d/v5LNgFoOZYsOIpjVA1Tbx1UXUEujriZCF+wVLHkhy0QW1BhU0rlLRKtArz63Z3RQW6FUo2oQdIpsSWEE1ByUSyTdQFAvYrfwk6sEUNuiOp26DaJ0kICajXKF+GRRpwojbhCBmolyE53tLExK7QYBqBGotACRJp3JwYryO1AjUJ3Ff7I5lLQtkw9QI1CdhVxnYnWodoYMahuUO9SQFv0dNElIQc1ApYe37gR8p2AGag6qCtqkmO8K+MkgkYVYUFuikkM1ycEHu8GYfAY1AhUFYHB4uVP8L+8HNQbV2YBODy4nG5a3drFALY9Sk10a7K6QESemoEagkgKsSzDUgYrO4UFQM1CdYEwCvRo8UREX1BhUN8BVYLuglgkKqFGodFNIJQfq+6iIBuoVqORQTuezfKmDeiXKHbpxCcStZBTUlihXhLgb4K2BAmoMKj1s4zYTW0mC29gGtS1qpQsUKFCgTtcvVQVPfis+mGsAAAAASUVORK5CYII=" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                        
+                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#hello-world-in-shellcode"><span class="post-toc-number">1.</span> <span class="post-toc-text">hello_world in shellcode</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#get-syscalls"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">get syscalls</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#register-transmit-arguments"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">register transmit arguments</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#first-stage-clear"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">first stage clear!</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fetch-shellcode-from-binary"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">fetch shellcode from binary</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#use-shellcode-in-C"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">use shellcode in C</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#relative-address-technique"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">relative address technique</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#jump-call-technique"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">jump-call technique</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#stack-technique"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">stack technique</span></a></li></ol></li></ol></div>
+                        
+                    
+                    <article id="post-content">
+                        <span id="more"></span>
+
+<h1 id="hello-world-in-shellcode"><a href="#hello-world-in-shellcode" class="headerlink" title="hello_world in shellcode"></a>hello_world in shellcode</h1><h2 id="get-syscalls"><a href="#get-syscalls" class="headerlink" title="get syscalls"></a>get syscalls</h2><p>系统调用号：</p>
+<ul>
+<li>32位：<code>/usr/include/x86_64-linux-gnu/asm/unistd_32.h</code></li>
+<li>64位：<code>/usr/include/x86_64-linux-gnu/asm/unistd_64.h</code></li>
+</ul>
+<blockquote>
+<p>以下实验均以64位实验环境作为实验基础</p>
+</blockquote>
+<h2 id="register-transmit-arguments"><a href="#register-transmit-arguments" class="headerlink" title="register transmit arguments"></a>register transmit arguments</h2><table>
+<thead>
+<tr>
+<th>arch</th>
+<th>syscall NR</th>
+<th>return</th>
+<th>arg0</th>
+<th>arg1</th>
+<th>arg2</th>
+<th>arg3</th>
+<th>arg4</th>
+<th>arg5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>arm</td>
+<td>r7</td>
+<td>r0</td>
+<td>r0</td>
+<td>r1</td>
+<td>r2</td>
+<td>r3</td>
+<td>r4</td>
+<td>r5</td>
+</tr>
+<tr>
+<td>arm64</td>
+<td>x8</td>
+<td>x0</td>
+<td>x0</td>
+<td>x1</td>
+<td>x2</td>
+<td>x3</td>
+<td>x4</td>
+<td>x5</td>
+</tr>
+<tr>
+<td>x86</td>
+<td>eax</td>
+<td>eax</td>
+<td>ebx</td>
+<td>ecx</td>
+<td>edx</td>
+<td>esi</td>
+<td>edi</td>
+<td>ebp</td>
+</tr>
+<tr>
+<td>x86_64</td>
+<td>rax</td>
+<td>rax</td>
+<td>rdi</td>
+<td>rsi</td>
+<td>rdx</td>
+<td>r10</td>
+<td>r8</td>
+<td>r9</td>
+</tr>
+</tbody></table>
+<p>x86_64系统调用寄存器为rax。</p>
+<h2 id="first-stage-clear"><a href="#first-stage-clear" class="headerlink" title="first stage clear!"></a>first stage clear!</h2><ul>
+<li>使用系统函数<code>write</code>输出到屏幕，<code>ssize_t write(int fd, const void *buf, size_t count);</code></li>
+<li>fd: 文件标识符。当fd为1时，输出到屏幕。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Integer value</th>
+<th>Name</th>
+<th>&lt;<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Unistd.h">unistd.h</a>&gt; symbolic constant</th>
+<th>&lt;<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stdio.h">stdio.h</a>&gt; file stream</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stdin">Standard input</a></td>
+<td>STDIN_FILENO</td>
+<td>stdin</td>
+</tr>
+<tr>
+<td>1</td>
+<td><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stdout">Standard output</a></td>
+<td>STDOUT_FILENO</td>
+<td>stdout</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stderr">Standard error</a></td>
+<td>STDERR_FILENO</td>
+<td>stderr</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">global _start</span><br><span class="line">section .text</span><br><span class="line">_start:</span><br><span class="line">    mov rax, 0x1          ; write syscalls</span><br><span class="line">    mov rdi, 0x1          ; fd</span><br><span class="line">    mov rsi, hello_world  ; buf</span><br><span class="line">    mov rdx, length       ; count</span><br><span class="line">    syscall               </span><br><span class="line"></span><br><span class="line">    mov rax, 60           ; exit syscalls</span><br><span class="line">    mov rdi, 0            ; status</span><br><span class="line">    syscall</span><br><span class="line"></span><br><span class="line">section .data</span><br><span class="line">    hello_world: db 'hello world', 0xa   ; str and newline</span><br><span class="line">    length: equ $-hello_world</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>汇编成为适应系统的可重定位二进制：<code>nasm -felf64 hello_world.asm -o hello_world.o</code></li>
+<li>链接为可执行二进制：<code>ld hello_world.o -o hello_world</code></li>
+</ul>
+<h2 id="fetch-shellcode-from-binary"><a href="#fetch-shellcode-from-binary" class="headerlink" title="fetch shellcode from binary"></a>fetch shellcode from binary</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objdump -M intel -D hello_world | grep <span class="string">'[0-9a-f]:'</span> | grep -v <span class="string">'file'</span> | <span class="built_in">cut</span> -f2 -d: | <span class="built_in">cut</span> -f1-7 -d<span class="string">' '</span> | <span class="built_in">tr</span> -s <span class="string">' '</span> | <span class="built_in">tr</span> <span class="string">'\t'</span> <span class="string">' '</span> | sed <span class="string">'s/ $//g'</span> | sed <span class="string">'s/ /\\\x/g'</span> | <span class="built_in">paste</span> -d <span class="string">''</span> -s</span><br><span class="line">\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x48\xbe\xd8\x00\x60\x00\x00\x00\x00\x00\xba\x0c\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\x68\x65\x6c\x6c\x6f\x20\x77\x6f\x72\x6c\x64\x0a</span><br></pre></td></tr></table></figure>
+
+<h2 id="use-shellcode-in-C"><a href="#use-shellcode-in-C" class="headerlink" title="use shellcode in C"></a>use shellcode in C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> code[] = <span class="string">"\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x48\xbe\xd8\x00\x60\x00\x00\x00\x00\x00\xba\x0c\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\x68\x65\x6c\x6c\x6f\x20\x77\x6f\x72\x6c\x64\x0a"</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"shellcode length: %d\n"</span>, (<span class="type">int</span>)<span class="built_in">strlen</span>(code));</span><br><span class="line">    <span class="type">int</span> (*ret) () = (<span class="type">int</span>(*) ()) code;</span><br><span class="line">    ret();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -z execstack -o <span class="built_in">test</span> 1.c</span><br><span class="line">./test</span><br><span class="line">shellcode length:2</span><br><span class="line">t</span><br></pre></td></tr></table></figure>
+
+<p>运行，唉怎么只有一个字母呢？我的”哈喽我叠”呢？</p>
+<ul>
+<li><p>原因：shellcode中有<code>\0</code>，他被称为”bad character”，”bad character”会被字符串截断。</p>
+</li>
+<li><p>bad character</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>hex</th>
+<th>str</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>00</td>
+<td>\0</td>
+<td>null</td>
+</tr>
+<tr>
+<td>0A</td>
+<td>\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>\f</td>
+<td>换页</td>
+</tr>
+<tr>
+<td>0D</td>
+<td>\r</td>
+<td>回车</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hello_world3:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">00000000004000b0 &lt;_start&gt;:</span><br><span class="line">  4000b0:	b8 01 00 00 00       	mov    eax,0x1</span><br><span class="line">  4000b5:	bf 01 00 00 00       	mov    edi,0x1</span><br><span class="line">  4000ba:	48 be d8 00 60 00 00 	movabs rsi,0x6000d8</span><br><span class="line">  4000c1:	00 00 00 </span><br><span class="line">  4000c4:	ba 0c 00 00 00       	mov    edx,0xc</span><br><span class="line">  4000c9:	0f 05                	syscall </span><br><span class="line">  4000cb:	b8 3c 00 00 00       	mov    eax,0x3c</span><br><span class="line">  4000d0:	bf 00 00 00 00       	mov    edi,0x0</span><br><span class="line">  4000d5:	0f 05                	syscall </span><br></pre></td></tr></table></figure>
+
+<p><code>mov eax, 0x1</code>会出现<code>\0</code>，<code>al</code>表示<code>eax</code>寄存器的低位。</p>
+<ul>
+<li>先通过<code>xor</code>使寄存器置零</li>
+<li>再通过<code>add</code>增加寄存器到指定值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">00000000004000b0 &lt;_start&gt;:</span><br><span class="line">  4000b0:	b0 01                	mov    al,0x1</span><br><span class="line">  4000b2:	48 31 ff             	xor    rdi,rdi</span><br><span class="line">  4000b5:	48 83 c7 01          	add    rdi,0x1</span><br></pre></td></tr></table></figure>
+
+<p>但是字符串地址仍然有0。</p>
+<h2 id="relative-address-technique"><a href="#relative-address-technique" class="headerlink" title="relative address technique"></a>relative address technique</h2><p>通过rel可以找到相对rip偏移的变量地址，执行到存储buf的寄存器rsi取地址时，rip减去偏移的地址就是字符串地址，将该地址加载到rsi中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">global _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">    jmp code</span><br><span class="line">    hello_world:db 'hello world',0xa</span><br><span class="line"></span><br><span class="line">code:</span><br><span class="line">    mov al, 1</span><br><span class="line">    xor rdi, rdi</span><br><span class="line">    add rdi, 1</span><br><span class="line">    lea rsi, [rel hello_world]</span><br><span class="line">    xor rdx, rdx</span><br><span class="line">    add rdx, 0xc</span><br><span class="line">    syscall</span><br><span class="line"></span><br><span class="line">    mov al, 60</span><br><span class="line">    xor rdi, rdi</span><br><span class="line">    syscall</span><br></pre></td></tr></table></figure>
+
+<p>看一下dump出来的shellcode</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">hello_world1:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000400080 &lt;_start&gt;:</span><br><span class="line">  400080:	eb 0c                	jmp    40008e &lt;code&gt;</span><br><span class="line"></span><br><span class="line">0000000000400082 &lt;hello_world&gt;:</span><br><span class="line">  400082:	68 65 6c 6c 6f       	push   0x6f6c6c65</span><br><span class="line">  400087:	20 77 6f             	and    BYTE PTR [rdi+0x6f],dh</span><br><span class="line">  40008a:	72 6c                	jb     4000f8 &lt;code+0x6a&gt;</span><br><span class="line">  40008c:	64                   	fs</span><br><span class="line">  40008d:	0a                   	.byte 0xa</span><br><span class="line"></span><br><span class="line">000000000040008e &lt;code&gt;:</span><br><span class="line">  40008e:	b0 01                	mov    al,0x1</span><br><span class="line">  400090:	48 31 ff             	xor    rdi,rdi</span><br><span class="line">  400093:	48 83 c7 01          	add    rdi,0x1</span><br><span class="line">  400097:	48 8d 35 e4 ff ff ff 	lea    rsi,[rip+0xffffffffffffffe4]        # 400082 &lt;hello_world&gt;</span><br><span class="line">  40009e:	48 31 d2             	xor    rdx,rdx</span><br><span class="line">  4000a1:	48 83 c2 0c          	add    rdx,0xc</span><br><span class="line">  4000a5:	0f 05                	syscall </span><br><span class="line">  4000a7:	b0 3c                	mov    al,0x3c</span><br><span class="line">  4000a9:	48 31 ff             	xor    rdi,rdi</span><br><span class="line">  4000ac:	0f 05                	syscall </span><br></pre></td></tr></table></figure>
+
+<p>已经没有bad char了。</p>
+<h2 id="jump-call-technique"><a href="#jump-call-technique" class="headerlink" title="jump-call technique"></a>jump-call technique</h2><p>写一个简单的asm教学程序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">global _start</span><br><span class="line">section .text</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">    jmp string</span><br><span class="line"></span><br><span class="line">code:</span><br><span class="line">    pop rsi</span><br><span class="line">    pop rdi</span><br><span class="line"></span><br><span class="line">    mov al, 0x3c  ; exit syscalls</span><br><span class="line">    xor rdi, rdi  ; status: 0</span><br><span class="line">    syscall  </span><br><span class="line"></span><br><span class="line">string:</span><br><span class="line">    call code</span><br><span class="line">    hello_world:db 'hello world', 0xa</span><br><span class="line">    bin_sh:db '/bin/sh', 0xa</span><br><span class="line">    sh:db 'sh', 0xa</span><br></pre></td></tr></table></figure>
+
+<p>汇编和链接后使用gdb调试，可以发现在<code>call string</code>后，stack的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">───────────────────────────────────────────────────────────────────────────[ STACK ]────────────────────────────────────────────────────────────────────────────</span><br><span class="line">00:0000│ rsp 0x7fffffffe0a8 —▸ 0x400090 (hello_world) ◂— push   0x6f6c6c65 /* 'hello world\n/bin/sh\nsh\n' */</span><br><span class="line">01:0008│     0x7fffffffe0b0 ◂— 0x1</span><br><span class="line">02:0010│     0x7fffffffe0b8 —▸ 0x7fffffffe387 ◂— '/home/codeman/binary_research/shellcode/system_call/tech1'</span><br><span class="line">03:0018│     0x7fffffffe0c0 ◂— 0x0</span><br></pre></td></tr></table></figure>
+
+<p>pop rsi后rsi寄存器的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*RSI  0x400090 (hello_world) ◂— push   0x6f6c6c65 /* 'hello world\n/bin/sh\nsh\n' */</span><br></pre></td></tr></table></figure>
+
+<p>该字符串就跳到rsi寄存器上，所以我们可以使用这个方式给rsi赋值。</p>
+<p>最终的asm程序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">global _start</span><br><span class="line">section .text</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">    jmp string</span><br><span class="line"></span><br><span class="line">code:</span><br><span class="line">    pop rsi</span><br><span class="line">    mov al, 1</span><br><span class="line">    xor rdi, rdi</span><br><span class="line">    add rdi, 1</span><br><span class="line">    xor rdx, rdx</span><br><span class="line">    add rdx, 0xc</span><br><span class="line">    syscall</span><br><span class="line"></span><br><span class="line">    mov al, 0x3c</span><br><span class="line">    xor rdi, rdi</span><br><span class="line">    syscall</span><br><span class="line"></span><br><span class="line">string:</span><br><span class="line">    call code</span><br><span class="line">    hello_world:db 'hello world', 0xa</span><br></pre></td></tr></table></figure>
+
+<h2 id="stack-technique"><a href="#stack-technique" class="headerlink" title="stack technique"></a>stack technique</h2><p>字符串逆序插入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">a = <span class="string">b'hello world\n'</span></span><br><span class="line">b = base64.b16encode(a[::-<span class="number">1</span>]).lower()</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="comment"># b'0a646c726f77206f6c6c6568'</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(b))</span><br><span class="line"><span class="comment"># 24</span></span><br></pre></td></tr></table></figure>
+
+<p>放入栈中，然后push进去，push只能放入4个字节，该字符串可以按12个字节来算，4个字节push，然后剩下8个字节先放入一个通用寄存器，然后在push进去。</p>
+
+                    </article>
+                    
+    <blockquote class="post-license">
+        <p>
+            <strong>本文作者&nbsp;:&nbsp;wtfff</strong>
+            <br>
+            <strong>
+            
+                本作品采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-SA 4.0）</a>进行许可。This blog is under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0 Unported License</a>
+            </strong>
+            <br>
+            <strong>本文链接&nbsp;:&nbsp;</strong><a href="http://im0use.github.io/2022/05/14/shellcode/">http://im0use.github.io/2022/05/14/shellcode/</a>
+        </p>
+    </blockquote>
+
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
+    <script>
+    (function() {
+        var dateUpdate = Date.parse("2022-06-03");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    })();
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2022-05-14T14:43:16.000Z" itemprop="datePublished">2022-05-14</time>
+
+    , 最后修改于&nbsp;<time datetime="2022-06-03T05:18:28.611Z" itemprop="dateModified">2022-06-03</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/2022/05/16/hex2base64/" rel="prev">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">hex2base64</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/2022/04/18/powershell/" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">powershell</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="http://im0use.github.io">wtf</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>
